@@ -22,10 +22,16 @@ namespace GitlabMindMapGenerator
         public Int64 ID { get; }
         public FreeMindPosition Position { get; set; }
         public string Text { get; set; }
+        public string Link { get; set; }
         public List<FreeMindNode> Nodes = new List<FreeMindNode>();
         public List<string> Icons = new List<string>();
 
-        public FreeMindNode(string text, FreeMindPosition position, List<string> icons)
+        public FreeMindNode(
+            string text, 
+            string link,
+            FreeMindPosition position, 
+            List<string> icons
+        )
         {
             Random random = new Random();
             
@@ -34,6 +40,7 @@ namespace GitlabMindMapGenerator
             ID = Convert.ToInt64(random.Next(0, 999999999));
             Position = position;
             Text = text;
+            Link = link;
             Icons = icons;
         }
     }

@@ -201,6 +201,7 @@ namespace GitlabMindMapGenerator
             // create parent node
             FreeMindNode node = new FreeMindNode(
                 text: $"{issue.Title} ({issue.TaskPercentage}%)",
+                link: issue.URL,
                 position: FreeMindPosition.Right,
                 icons: icons
             );            

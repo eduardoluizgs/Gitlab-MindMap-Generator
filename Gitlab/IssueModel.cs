@@ -19,6 +19,9 @@ namespace GitlabMindMapGenerator
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
+        [JsonPropertyName("web_url")]
+        public string URL { get; set; }        
+
         public int TaskCount
         {
             get {

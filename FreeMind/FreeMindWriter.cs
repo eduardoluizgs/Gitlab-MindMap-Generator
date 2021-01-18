@@ -150,10 +150,10 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "TEXT", null, node.Text);            
 
             // Write <icon> element
-            foreach(string icon in node.Icons)
+            foreach(FreeMindNodeIcon icon in node.Icons)
             {
                 XMLWriter.WriteStartElement(null, "icon", null);
-                XMLWriter.WriteAttributeString(null, "BUILTIN", null, icon);
+                XMLWriter.WriteAttributeString(null, "BUILTIN", null, icon.Value);
                 XMLWriter.WriteEndElement();
             }
 

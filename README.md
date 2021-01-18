@@ -11,7 +11,7 @@
     "ApiToken": "",
     "ProjectIDs": [],
     "ProjectLabel": "",
-    "NodeLabels": []
+    "NodesPattern": "(?<=((\\*|\\-|\\+)\\s~Domain|~Theme|~Epic|~Feature|~\"User Story\").*?\\s\\-\\s)(.*?)(?<=\\))"
   }
 }
 ```
@@ -22,7 +22,7 @@
 * **ApiToken**: Access token for Gitlab api.
 * **ProjectIDs**: Project ID's envolved in mindmap build.
 * **ProjectLabel**: Label for identify the principal issue for project.
-* **NodeLabels**: Labels for identify the issues envolved in mindmap build.
+* **NodesPattern**: Regex patter for identify the issues envolved in mindmap build.
 
 ## Links
 

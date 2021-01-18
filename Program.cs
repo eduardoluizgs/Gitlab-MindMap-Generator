@@ -20,10 +20,10 @@ namespace GitlabMindMapGenerator
         static string GitlabApiToken;
         static string GitlabApiIssuesUrl;
         static string GitlabProjectLabel;
+        static string GitlabNodesPattern;
         static HttpClient GitlabApiHttpClient;
         static List<Issue> Issues = new List<Issue>();
         static List<string> GitlabProjectIDs = new List<string>();
-        static List<string> GitlabNodeLabels = new List<string>();
         static List<FreeMindNode> FreeMindMapNodes = new List<FreeMindNode>();
         static bool HasError = false;
 
@@ -72,7 +72,7 @@ namespace GitlabMindMapGenerator
             GitlabApiIssuesUrl = Configuration.GetValue<string>($"Gitlab:ApiIssuesUrl");
             Configuration.GetSection($"Gitlab:ProjectIDs").Bind(GitlabProjectIDs);
             GitlabProjectLabel = Configuration.GetValue<string>($"Gitlab:ProjectLabel");
-            Configuration.GetSection($"Gitlab:NodeLabels").Bind(GitlabNodeLabels);
+            GitlabNodesPattern = Configuration.GetValue<string>($"Gitlab:NodesPattern");
             
             if (
                 GitlabUrl == null || 
@@ -81,7 +81,7 @@ namespace GitlabMindMapGenerator
                 GitlabApiIssuesUrl == null || 
                 GitlabProjectIDs.Count == 0 || 
                 GitlabProjectLabel == null || 
-                GitlabNodeLabels.Count == 0
+                GitlabNodesPattern == null
             )
             {
                 Console.WriteLine($@"The configuration is invalid in `AppSettings.json`. Please, review configuration file and try again.");
@@ -99,6 +99,7 @@ namespace GitlabMindMapGenerator
             GitlabApiHttpClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json")
             );
+            GitlabApiHttpClient.DefaultRequestHeaders.Add("Private-Token", GitlabApiToken);
         }
 
         static async Task GetMindMapContent()
@@ -133,7 +134,7 @@ namespace GitlabMindMapGenerator
         {
             List<Issue> issues = new List<Issue>();
 
-            foreach(IssueNode node in issue.GetNodes())
+            foreach(IssueNode node in issue.GetNodes(GitlabNodesPattern))
             {
                 var content = await GetIssueAsync(
                     GitlabApiUrl + 
@@ -178,7 +179,7 @@ namespace GitlabMindMapGenerator
         static void WriteMindMap()
         {
             FreeMindWriter mindMap = new FreeMindWriter(
-                "/Users/eduardo/Projetos/gitlab-mindmap-generator/Generated/FreeMindMap.mm"
+                Path.Join(Directory.GetCurrentDirectory(), "Generated", "FreeMindMap.mm")
             );
 
             foreach(Issue issue in Issues)
@@ -191,17 +192,17 @@ namespace GitlabMindMapGenerator
 
         static void AddNode(Issue issue, List<FreeMindNode> mindMapNodes)
         {
-            List<string> icons = new List<string>();
+            List<FreeMindNodeIcon> icons = new List<FreeMindNodeIcon>();
 
             if (issue.TaskPercentage == 0)
-                icons.Add("button_cancel");
+                icons.Add(new FreeMindNodeIcon("button_cancel"));
             if (issue.TaskPercentage == 100)
-                icons.Add("button_ok");
+                icons.Add(new FreeMindNodeIcon("button_ok"));
 
             // create parent node
             FreeMindNode node = new FreeMindNode(
                 text: $"{issue.Title} ({issue.TaskPercentage}%)",
-                link: issue.URL,
+                link: issue.WebURL,
                 position: FreeMindPosition.Right,
                 icons: icons
             );            

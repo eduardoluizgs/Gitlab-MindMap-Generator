@@ -1,0 +1,27 @@
+<map version="0.8.0">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1140205767213" ID="Freemind_Link_1037571784" MODIFIED="1140205803295" TEXT="Mindmaps at Work">
+<node CREATED="1140205808352" ID="_" LINK="http://www.amazon.co.uk/exec/obidos/search-handle-url/index=books-uk&amp;field-author=Buzan%2C%20Tony/202-3352179-6064637" MODIFIED="1140205880346" POSITION="right" TEXT="Tony Buzan"/>
+<node CREATED="1140205978857" ID="Freemind_Link_1159787103" MODIFIED="1149023636680" POSITION="left" TEXT="Contents">
+<icon BUILTIN="gohome"/>
+<node CREATED="1140205986769" ID="Freemind_Link_254331118" MODIFIED="1140207413170" TEXT="Infinite Creativity" VSHIFT="73"/>
+<node CREATED="1140206002892" HGAP="270" ID="Freemind_Link_1047338572" MODIFIED="1149023611461" TEXT="Problem Solving" VSHIFT="-20">
+<node CREATED="1140206289474" ID="Freemind_Link_307113808" MODIFIED="1140206295022" TEXT="Work forward"/>
+<node CREATED="1140206296594" ID="Freemind_Link_1312143962" MODIFIED="1140206301912" TEXT="Work backward"/>
+<node CREATED="1140206351723" ID="Freemind_Link_698661283" MODIFIED="1140206357492" TEXT="Define the problem"/>
+<node CREATED="1140206364201" ID="Freemind_Link_1844527158" MODIFIED="1149023729476" TEXT="Define the solution"/>
+</node>
+<node CREATED="1140206021018" HGAP="451" ID="Freemind_Link_1793884609" MODIFIED="1149023667367" TEXT="Planning" VSHIFT="2">
+<icon BUILTIN="ksmiletris"/>
+<icon BUILTIN="pencil"/>
+<node CREATED="1140206503672" ID="Freemind_Link_1685400237" MODIFIED="1140206507858" TEXT="PDCA"/>
+<node CREATED="1140206509831" ID="Freemind_Link_225825516" MODIFIED="1140206512595" TEXT="TOTE"/>
+</node>
+<node CREATED="1140206025134" ID="Freemind_Link_1285015772" MODIFIED="1140206032204" TEXT="Evolution"/>
+<node CREATED="1140206034347" ID="Freemind_Link_1066778125" MODIFIED="1140207375706" TEXT="Success" VSHIFT="20"/>
+<node CREATED="1140206044512" ID="Freemind_Link_1524718729" MODIFIED="1140207403946" TEXT="Bullies" VSHIFT="27"/>
+<node CREATED="1140206051382" ID="Freemind_Link_477575703" MODIFIED="1140206054846" TEXT="Presentations"/>
+<node CREATED="1140206058772" ID="Freemind_Link_736624566" MODIFIED="1140206101634" TEXT="Work-Life Balance" VSHIFT="24"/>
+</node>
+</node>
+</map>

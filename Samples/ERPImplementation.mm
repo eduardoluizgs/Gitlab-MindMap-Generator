@@ -1,0 +1,234 @@
+<map version="0.8.0">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1173378770340" ID="Freemind_Link_1756786997" MODIFIED="1173378782227" TEXT="ERP Implementation">
+<node CREATED="1173378791911" FOLDED="true" ID="_" MODIFIED="1173378797569" POSITION="right" TEXT="Definition of ERP">
+<node CREATED="1173378798911" ID="Freemind_Link_121908641" MODIFIED="1173378872287" TEXT="Abbreviation for Enterprise Ressource Planning"/>
+<node CREATED="1173378873188" FOLDED="true" ID="Freemind_Link_1996697033" MODIFIED="1173379207999" TEXT="Integrated Software System">
+<node CREATED="1173379646900" ID="Freemind_Link_709981330" MODIFIED="1173379654702" TEXT="&quot;Complete Suite of Integrated Applications&quot;"/>
+</node>
+<node CREATED="1173379208871" FOLDED="true" ID="Freemind_Link_1002119543" MODIFIED="1173379235699" TEXT="Modular Software System">
+<node CREATED="1173379256819" ID="Freemind_Link_304487604" MODIFIED="1173379260505" TEXT="functional Modules"/>
+<node CREATED="1173379260975" ID="Freemind_Link_386110789" MODIFIED="1173379272602" TEXT="combined to process flow"/>
+</node>
+<node CREATED="1173379273744" FOLDED="true" ID="Freemind_Link_1686546159" MODIFIED="1173379277449" TEXT="Single Database">
+<node CREATED="1173379282006" ID="Freemind_Link_1198059846" MODIFIED="1173379288175" TEXT="avoiding data &quot;islands&quot;"/>
+<node CREATED="1173379289286" ID="Freemind_Link_1755505312" MODIFIED="1173379294173" TEXT="avoiding redudancy"/>
+<node CREATED="1173379658617" ID="Freemind_Link_1407227559" MODIFIED="1173379661932" TEXT="real-time updates"/>
+</node>
+<node CREATED="1173381200825" ID="Freemind_Link_833400938" MODIFIED="1173381207044" TEXT="Enhencable with bolt-ons"/>
+</node>
+<node CREATED="1173378878956" FOLDED="true" ID="Freemind_Link_1315513374" MODIFIED="1173379688721" POSITION="right" TEXT="Some Systems">
+<node CREATED="1173380041277" FOLDED="true" ID="Freemind_Link_269166874" MODIFIED="1173380047877" TEXT="Proprietary Systems">
+<node CREATED="1173379689672" FOLDED="true" ID="Freemind_Link_924000380" MODIFIED="1173379694829" TEXT="Major Players">
+<node CREATED="1173380061146" FOLDED="true" ID="Freemind_Link_1731229624" MODIFIED="1173380226804" TEXT="Advantages">
+<node CREATED="1173380239763" ID="Freemind_Link_300359834" MODIFIED="1173380246242" TEXT="better service"/>
+<node CREATED="1173380247414" ID="Freemind_Link_1700323929" MODIFIED="1173380262716" TEXT="more likely that costumer / supplier have the same system"/>
+<node CREATED="1173380263066" ID="Freemind_Link_74367901" MODIFIED="1173380277207" TEXT="potentially more functionality"/>
+<node CREATED="1173380277607" ID="Freemind_Link_1344897400" MODIFIED="1173380281964" TEXT="potentially more security"/>
+<node CREATED="1173380282254" ID="Freemind_Link_1103439117" MODIFIED="1173380291688" TEXT="support"/>
+</node>
+<node CREATED="1173379707107" FOLDED="true" ID="Freemind_Link_1690399651" MODIFIED="1173379708519" TEXT="Oracle">
+<node CREATED="1173379710392" ID="Freemind_Link_795901408" MODIFIED="1173379714668" TEXT="J D Edwards"/>
+<node CREATED="1173379699897" ID="Freemind_Link_351864497" MODIFIED="1173379706496" TEXT="PeopleSoft"/>
+<node CREATED="1173379762897" ID="Freemind_Link_1081456867" MODIFIED="1173379764169" TEXT="Siebel"/>
+</node>
+<node CREATED="1173379725814" FOLDED="true" ID="Freemind_Link_1873182673" LINK="www.sap.com" MODIFIED="1173381658593" TEXT="SAP">
+<node CREATED="1173379791128" ID="Freemind_Link_86782943" MODIFIED="1173379801262" TEXT="&quot;System Application Products&quot;"/>
+<node CREATED="1173379801783" FOLDED="true" ID="Freemind_Link_1470157828" MODIFIED="1173379807231" TEXT="SAP R/3">
+<node CREATED="1173379810205" ID="Freemind_Link_827869419" MODIFIED="1173379815453" TEXT="Release 3"/>
+<node CREATED="1173379815723" ID="Freemind_Link_524704709" MODIFIED="1173379827079" TEXT="3 Tier Client-Server Architecture"/>
+<node CREATED="1173379906924" ID="Freemind_Link_1098679064" MODIFIED="1173379916017" TEXT="Industry specific solutions"/>
+<node CREATED="1173379916438" ID="Freemind_Link_1433214413" MODIFIED="1173379925581" TEXT="Special solutions"/>
+<node CREATED="1173379925892" ID="Freemind_Link_83327340" MODIFIED="1173379937979" TEXT="Frequent new applications, upgrades and industry bolt-ons"/>
+<node CREATED="1173379948905" FOLDED="true" ID="Freemind_Link_457521848" MODIFIED="1173379958899" TEXT="Open Systems Architecture">
+<node CREATED="1173379960872" ID="Freemind_Link_1083390108" MODIFIED="1173379972749" TEXT="Works with different hardware"/>
+<node CREATED="1173379973300" ID="Freemind_Link_752021474" MODIFIED="1173379979659" TEXT="Works with differnet databases"/>
+<node CREATED="1173379979979" ID="Freemind_Link_222885350" MODIFIED="1173379995492" TEXT="Works with different Operationg Systems and GUIs"/>
+</node>
+<node CREATED="1173380450586" FOLDED="true" ID="Freemind_Link_1562312844" MODIFIED="1173380459939" TEXT="Global Business Architecture">
+<node CREATED="1173380460951" ID="Freemind_Link_174809901" MODIFIED="1173380516210" TEXT="&gt;30 languages supported"/>
+<node CREATED="1173380516621" ID="Freemind_Link_1268254635" MODIFIED="1173380524362" TEXT="laguage is user driven"/>
+<node CREATED="1173380527216" ID="Freemind_Link_1721684725" MODIFIED="1173380542528" TEXT="Muli-currency: currency exchange rates"/>
+<node CREATED="1173380542769" ID="Freemind_Link_1042407210" MODIFIED="1173380549158" TEXT="tax issues based on country"/>
+</node>
+<node CREATED="1173380567094" FOLDED="true" ID="Freemind_Link_14475952" MODIFIED="1173380570609" TEXT="Audit Trail">
+<node CREATED="1173380573853" ID="Freemind_Link_1261066306" MODIFIED="1173380579121" TEXT="Important for regulated industries"/>
+<node CREATED="1173380579371" ID="Freemind_Link_114728791" MODIFIED="1173380586121" TEXT="learn more about user behaviour"/>
+<node CREATED="1173380586351" ID="Freemind_Link_768207606" MODIFIED="1173380591999" TEXT="every person is accountable"/>
+</node>
+</node>
+</node>
+<node CREATED="1173379769677" ID="Freemind_Link_71098482" MODIFIED="1173379778750" TEXT="SSA Global - (BAAN)"/>
+</node>
+<node CREATED="1173380316984" FOLDED="true" ID="Freemind_Link_1160639279" MODIFIED="1173380320469" TEXT="Smaller Players">
+<node CREATED="1173380321370" FOLDED="true" ID="Freemind_Link_509647186" MODIFIED="1173380324034" TEXT="Advantages">
+<node CREATED="1173380324705" ID="Freemind_Link_1820904994" MODIFIED="1173380330443" TEXT="potentially higher influence"/>
+</node>
+</node>
+</node>
+<node CREATED="1173379695200" FOLDED="true" ID="Freemind_Link_1138807897" MODIFIED="1173379698445" TEXT="Open Source Systems">
+<node CREATED="1173380349360" FOLDED="true" ID="Freemind_Link_1025865394" MODIFIED="1173380352916" TEXT="Advantages">
+<node CREATED="1173380367537" ID="Freemind_Link_1913020633" MODIFIED="1173380374006" TEXT="potentially better security"/>
+<node CREATED="1173380374266" ID="Freemind_Link_1548677041" MODIFIED="1173380385132" TEXT="potentially cheaper (&quot;for free&quot;)"/>
+<node CREATED="1173380387365" ID="Freemind_Link_605899173" MODIFIED="1173380396088" TEXT="Influence through own programmers"/>
+<node CREATED="1173380396648" ID="Freemind_Link_1150100073" MODIFIED="1173380411630" TEXT="potentially easier costumization through open source code"/>
+</node>
+<node CREATED="1173381243516" FOLDED="true" ID="Freemind_Link_549309846" MODIFIED="1173381249375" TEXT="Disadvantages">
+<node CREATED="1173381250316" ID="Freemind_Link_227427386" MODIFIED="1173381263325" TEXT="potentially higher costumization needed"/>
+<node CREATED="1173381263655" ID="Freemind_Link_1510244045" MODIFIED="1173381275242" TEXT="no support (at least not free)"/>
+</node>
+<node CREATED="1173380340107" FOLDED="true" ID="Freemind_Link_586546848" MODIFIED="1173380343522" TEXT="Major Systems">
+<node CREATED="1173379731021" ID="Freemind_Link_534415102" MODIFIED="1173379744451" TEXT="Compiere"/>
+<node CREATED="1173379744721" ID="Freemind_Link_130322041" MODIFIED="1173379748677" TEXT="OFBiz"/>
+<node CREATED="1173379748957" ID="Freemind_Link_75019087" MODIFIED="1173379752032" TEXT="WebERP"/>
+</node>
+</node>
+</node>
+<node CREATED="1173379838075" FOLDED="true" ID="Freemind_Link_1222817432" MODIFIED="1173379844394" POSITION="right" TEXT="Some ERP Concepts">
+<node CREATED="1173379845336" FOLDED="true" ID="Freemind_Link_1964093224" MODIFIED="1173379850864" TEXT="Transaction">
+<node CREATED="1173379861499" ID="Freemind_Link_1738613671" MODIFIED="1173379869400" TEXT="creating"/>
+<node CREATED="1173379869641" ID="Freemind_Link_36915555" MODIFIED="1173379873156" TEXT="channging"/>
+<node CREATED="1173379873396" ID="Freemind_Link_104295393" MODIFIED="1173379875018" TEXT="displaying"/>
+</node>
+<node CREATED="1173379859306" FOLDED="true" ID="Freemind_Link_1898037987" MODIFIED="1173379860508" TEXT="Module">
+<node CREATED="1173379877051" ID="Freemind_Link_331888375" MODIFIED="1173379885143" TEXT="combination of transactions used for a process"/>
+</node>
+<node CREATED="1173380637615" FOLDED="true" ID="Freemind_Link_1206139765" MODIFIED="1173380640058" TEXT="Terminology">
+<node CREATED="1173380643123" FOLDED="true" ID="Freemind_Link_1150713881" MODIFIED="1173380646988" TEXT="Basis Software">
+<node CREATED="1173380651265" ID="Freemind_Link_1829845919" MODIFIED="1173380665104" TEXT="R/3 basis similar to an operating system"/>
+<node CREATED="1173380665355" ID="Freemind_Link_844967861" MODIFIED="1173380677422" TEXT="middleware between OS and servers"/>
+<node CREATED="1173380678834" ID="Freemind_Link_740642974" MODIFIED="1173380690321" TEXT="allow operations across different servers, OS and databases"/>
+</node>
+<node CREATED="1173380647209" FOLDED="true" ID="Freemind_Link_197291339" MODIFIED="1173380650003" TEXT="ABAP">
+<node CREATED="1173380693776" ID="Freemind_Link_1885223790" MODIFIED="1173380701206" TEXT="Advanced Business Application Programming"/>
+<node CREATED="1173380701427" ID="Freemind_Link_94610115" MODIFIED="1173380715757" TEXT="special-purpose, 4G Programming language by SAP"/>
+<node CREATED="1173380720234" ID="Freemind_Link_978763382" MODIFIED="1173380736818" TEXT="able to writhe programs for specialized requirements"/>
+</node>
+</node>
+</node>
+<node CREATED="1173380761663" FOLDED="true" ID="Freemind_Link_81389499" MODIFIED="1173382750193" POSITION="right" TEXT="ERP Implementation Strategy">
+<node CREATED="1173380766000" FOLDED="true" ID="Freemind_Link_223824756" MODIFIED="1173380772148" TEXT="Project Initiation">
+<node CREATED="1173381574282" ID="Freemind_Link_1426651293" MODIFIED="1173381579820" TEXT="Initial Need"/>
+<node CREATED="1173381580090" ID="Freemind_Link_1098104216" MODIFIED="1173381588612" TEXT="Why does the company feel the need for an integrated system?"/>
+<node CREATED="1173381588913" ID="Freemind_Link_1334214779" MODIFIED="1173381595192" TEXT="Existing Problems"/>
+<node CREATED="1173381595422" ID="Freemind_Link_1742065374" MODIFIED="1173381599748" TEXT="Future plans"/>
+<node CREATED="1173381599969" ID="Freemind_Link_1078463317" MODIFIED="1173381602993" TEXT="Competition"/>
+<node CREATED="1173381603223" ID="Freemind_Link_492696961" MODIFIED="1173381606608" TEXT="Customer Demand"/>
+</node>
+<node CREATED="1173380772369" FOLDED="true" ID="Freemind_Link_933576644" MODIFIED="1173380773590" TEXT="Planning">
+<node CREATED="1173381612887" FOLDED="true" ID="Freemind_Link_684700434" MODIFIED="1173381616523" TEXT="potential Analyses">
+<node CREATED="1173382569633" ID="Freemind_Link_790109209" MODIFIED="1173382577985" TEXT="Formulating of strategic targets"/>
+<node CREATED="1173381618355" ID="Freemind_Link_870410062" MODIFIED="1173381621930" TEXT="SWOT Analysis"/>
+<node CREATED="1173381622251" ID="Freemind_Link_293663946" MODIFIED="1173381624814" TEXT="GAP Analysis"/>
+<node CREATED="1173381625075" FOLDED="true" ID="Freemind_Link_1936575558" MODIFIED="1173381628199" TEXT="Elevatior Speech">
+<node CREATED="1173382610241" ID="Freemind_Link_1400717596" MODIFIED="1173382618093" TEXT="What is the solution?"/>
+<node CREATED="1173382618333" ID="Freemind_Link_1608729585" MODIFIED="1173382622850" TEXT="Benefits (triggers)"/>
+<node CREATED="1173382623100" ID="Freemind_Link_1807955329" MODIFIED="1173382630921" TEXT="Benefit Category (achieved)"/>
+<node CREATED="1173382631152" ID="Freemind_Link_844736558" MODIFIED="1173382635768" TEXT="Implementation plan"/>
+<node CREATED="1173382636029" ID="Freemind_Link_609346012" MODIFIED="1173382637080" TEXT="metrics"/>
+</node>
+</node>
+<node CREATED="1173380809372" FOLDED="true" ID="Freemind_Link_1883493030" MODIFIED="1173380813007" TEXT="Timeline">
+<node CREATED="1173380814199" FOLDED="true" ID="Freemind_Link_1442928047" MODIFIED="1173380820909" TEXT="Bing Bang Implementation">
+<node CREATED="1173383237974" FOLDED="true" ID="Freemind_Link_98849489" MODIFIED="1173383241780" TEXT="Advantages">
+<node CREATED="1173383245916" ID="Freemind_Link_986589191" MODIFIED="1173383257582" TEXT="potentially saved cost"/>
+<node CREATED="1173383257953" ID="Freemind_Link_1905795930" MODIFIED="1173383260637" TEXT="faster"/>
+</node>
+<node CREATED="1173383242010" FOLDED="true" ID="Freemind_Link_1343732835" MODIFIED="1173383244554" TEXT="Disadvantages">
+<node CREATED="1173383266455" ID="Freemind_Link_829903074" MODIFIED="1173383268258" TEXT="riskier"/>
+<node CREATED="1173383268588" ID="Freemind_Link_1032101184" MODIFIED="1173383272604" TEXT="big training issue"/>
+</node>
+</node>
+<node CREATED="1173380821169" FOLDED="true" ID="Freemind_Link_656463717" MODIFIED="1173380830352" TEXT="Phased Roll Out Implementation">
+<node CREATED="1173383237974" FOLDED="true" ID="Freemind_Link_1722903386" MODIFIED="1173383241780" TEXT="Advantages">
+<node CREATED="1173383296038" ID="Freemind_Link_1862379" MODIFIED="1173383305021" TEXT="learn about implementation"/>
+<node CREATED="1173383305271" ID="Freemind_Link_1684791925" MODIFIED="1173383311520" TEXT="cash management"/>
+<node CREATED="1173383334853" ID="Freemind_Link_65001117" MODIFIED="1173383360550" TEXT="might create motivitation if successful"/>
+</node>
+<node CREATED="1173383242010" FOLDED="true" ID="Freemind_Link_1437278049" MODIFIED="1173383244554" TEXT="Disadvantages">
+<node CREATED="1173383366309" ID="Freemind_Link_532073812" MODIFIED="1173383367500" TEXT="slower"/>
+<node CREATED="1173383367771" ID="Freemind_Link_569507428" MODIFIED="1173383379728" TEXT="managing interfaces costly and time consuming"/>
+</node>
+</node>
+<node CREATED="1173380831013" ID="Freemind_Link_1656176853" MODIFIED="1173380840847" TEXT="Mini Big Band (combination of both)"/>
+</node>
+<node CREATED="1173380844783" FOLDED="true" ID="Freemind_Link_856221703" MODIFIED="1173380849349" TEXT="Staff / Ressources">
+<node CREATED="1173380850131" FOLDED="true" ID="Freemind_Link_625875431" MODIFIED="1173380853876" TEXT="Outsourcing">
+<node CREATED="1173383237974" FOLDED="true" ID="Freemind_Link_747371106" MODIFIED="1173383241780" TEXT="Advantages">
+<node CREATED="1173383389081" ID="Freemind_Link_1925631125" MODIFIED="1173383393738" TEXT="Experience"/>
+<node CREATED="1173383393988" ID="Freemind_Link_1283809502" MODIFIED="1173383399486" TEXT="different perspective"/>
+<node CREATED="1173383399737" ID="Freemind_Link_1328998169" MODIFIED="1173383404644" TEXT="credibility of advice"/>
+</node>
+<node CREATED="1173383242010" FOLDED="true" ID="Freemind_Link_943472410" MODIFIED="1173383244554" TEXT="Disadvantages">
+<node CREATED="1173383406396" ID="Freemind_Link_1498439185" MODIFIED="1173383409090" TEXT="costly"/>
+<node CREATED="1173383409381" ID="Freemind_Link_319593959" MODIFIED="1173383415299" TEXT="consultants less responsible"/>
+<node CREATED="1173383415569" ID="Freemind_Link_1910180411" MODIFIED="1173383422089" TEXT="staff incompatibility"/>
+<node CREATED="1173383422369" ID="Freemind_Link_1910646958" MODIFIED="1173383426806" TEXT="cultural fit"/>
+</node>
+</node>
+<node CREATED="1173380854096" FOLDED="true" ID="Freemind_Link_264891215" MODIFIED="1173380856209" TEXT="Inhouse">
+<node CREATED="1173383237974" FOLDED="true" ID="Freemind_Link_1311833502" MODIFIED="1173383241780" TEXT="Advantages">
+<node CREATED="1173383433736" ID="Freemind_Link_667330980" MODIFIED="1173383439604" TEXT="existing relationship"/>
+<node CREATED="1173383439874" ID="Freemind_Link_1095119593" MODIFIED="1173383444451" TEXT="knowledge management"/>
+<node CREATED="1173383444892" ID="Freemind_Link_1893837972" MODIFIED="1173383450349" TEXT="better understanding of the needs"/>
+</node>
+<node CREATED="1173383242010" ID="Freemind_Link_1783287256" MODIFIED="1173383244554" TEXT="Disadvantages"/>
+</node>
+</node>
+<node CREATED="1173383458141" FOLDED="true" ID="Freemind_Link_779602159" MODIFIED="1173383464300" TEXT="Implementation Styles">
+<node CREATED="1173383469257" FOLDED="true" ID="Freemind_Link_1552830905" MODIFIED="1173383474504" TEXT="Decentralized">
+<node CREATED="1173383237974" FOLDED="true" ID="Freemind_Link_748447672" MODIFIED="1173383241780" TEXT="Advantages">
+<node CREATED="1173383495855" ID="Freemind_Link_530016617" MODIFIED="1173383511087" TEXT="potentally more initiative"/>
+</node>
+<node CREATED="1173383242010" FOLDED="true" ID="Freemind_Link_1494658625" MODIFIED="1173383244554" TEXT="Disadvantages">
+<node CREATED="1173383514942" ID="Freemind_Link_1200148974" MODIFIED="1173383525027" TEXT="more costly"/>
+</node>
+</node>
+<node CREATED="1173383474925" FOLDED="true" ID="Freemind_Link_1796429782" MODIFIED="1173383477559" TEXT="Centralized">
+<node CREATED="1173383237974" FOLDED="true" ID="Freemind_Link_346105727" MODIFIED="1173383241780" TEXT="Advantages">
+<node CREATED="1173383495855" ID="Freemind_Link_964773078" MODIFIED="1173383540830" TEXT="more control"/>
+<node CREATED="1173383541150" ID="Freemind_Link_1002149851" MODIFIED="1173383545056" TEXT="good data overview"/>
+<node CREATED="1173383545376" ID="Freemind_Link_1486751889" MODIFIED="1173383550083" TEXT="more experience"/>
+<node CREATED="1173383550393" ID="Freemind_Link_1101309004" MODIFIED="1173383560258" TEXT="bargaining power with consultants"/>
+</node>
+<node CREATED="1173383242010" FOLDED="true" ID="Freemind_Link_436788616" MODIFIED="1173383244554" TEXT="Disadvantages">
+<node CREATED="1173383514942" ID="Freemind_Link_637996682" MODIFIED="1173383525027" TEXT="more costly"/>
+<node CREATED="1173383573997" ID="Freemind_Link_897991191" MODIFIED="1173383577522" TEXT="cultural issues"/>
+</node>
+</node>
+</node>
+<node CREATED="1173380860415" ID="Freemind_Link_1358526199" MODIFIED="1173380864321" TEXT="Costumization Level"/>
+</node>
+<node CREATED="1173380773831" ID="Freemind_Link_1231673970" MODIFIED="1173380776495" TEXT="Controlling"/>
+<node CREATED="1173380776735" FOLDED="true" ID="Freemind_Link_1244243752" MODIFIED="1173380778578" TEXT="Execution">
+<node CREATED="1173387159683" FOLDED="true" ID="Freemind_Link_87384334" MODIFIED="1173387162227" TEXT="Failure Reasons">
+<node CREATED="1173387163058" ID="Freemind_Link_1277087795" MODIFIED="1173387169888" TEXT="Business Process Remodelling"/>
+<node CREATED="1173387170339" ID="Freemind_Link_106222038" MODIFIED="1173387187293" TEXT="Considering ERP as a Software rather than a business issue"/>
+<node CREATED="1173387187774" ID="Freemind_Link_532590607" MODIFIED="1173387198809" TEXT="low involvement of key people"/>
+</node>
+<node CREATED="1173387129920" FOLDED="true" ID="Freemind_Link_1587869015" MODIFIED="1173387132644" TEXT="Culture Issues">
+<node CREATED="1173387133415" ID="Freemind_Link_517175261" MODIFIED="1173387137031" TEXT="Power Distance"/>
+<node CREATED="1173387137491" ID="Freemind_Link_133383694" MODIFIED="1173387140205" TEXT="Hierarchy"/>
+<node CREATED="1173387140666" ID="Freemind_Link_1571162097" MODIFIED="1173387143600" TEXT="Authority"/>
+<node CREATED="1173387143901" ID="Freemind_Link_1010512221" MODIFIED="1173387150310" TEXT="Involvement of Senior Managerment"/>
+<node CREATED="1173387151031" ID="Freemind_Link_463408539" MODIFIED="1173387154125" TEXT="Willingness to Change"/>
+</node>
+<node CREATED="1173383968244" FOLDED="true" ID="Freemind_Link_279691717" MODIFIED="1173383969897" TEXT="Training">
+<node CREATED="1173383970698" ID="Freemind_Link_477163994" MODIFIED="1173383979240" TEXT="should take at least 20% of overall budget"/>
+<node CREATED="1173383979580" ID="Freemind_Link_1105728207" MODIFIED="1173383997937" TEXT="Selecting the implementation group"/>
+<node CREATED="1173383998207" FOLDED="true" ID="Freemind_Link_930505463" MODIFIED="1173384006679" TEXT="Selecting some &quot;super users&quot;">
+<node CREATED="1173387045419" ID="Freemind_Link_42313094" MODIFIED="1173387050266" TEXT="good communication skills"/>
+<node CREATED="1173387050556" ID="Freemind_Link_802642647" MODIFIED="1173387055954" TEXT="good technology skills"/>
+<node CREATED="1173387056405" ID="Freemind_Link_1610229548" MODIFIED="1173387072868" TEXT="knowledge of processes"/>
+<node CREATED="1173387073339" ID="Freemind_Link_1988826448" MODIFIED="1173387076053" TEXT="knowledge of IS"/>
+<node CREATED="1173387076313" ID="Freemind_Link_1913831199" MODIFIED="1173387081982" TEXT="long term career planning"/>
+<node CREATED="1173387082272" ID="Freemind_Link_518945333" MODIFIED="1173387087730" TEXT="leadership skills"/>
+<node CREATED="1173387088080" ID="Freemind_Link_1857261735" MODIFIED="1173387092547" TEXT="good learner &amp; teacher"/>
+<node CREATED="1173387092827" ID="Freemind_Link_1566947653" MODIFIED="1173387096663" TEXT="well respected"/>
+</node>
+</node>
+</node>
+<node CREATED="1173380778858" ID="Freemind_Link_1968941501" MODIFIED="1173380780611" TEXT="Cloesout"/>
+</node>
+</node>
+</map>

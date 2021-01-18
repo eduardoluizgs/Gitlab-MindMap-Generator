@@ -1,0 +1,196 @@
+<map version="0.8.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node COLOR="#000000" CREATED="1276469920797" ID="Freemind_Link_1218559289" MODIFIED="1276479986069" TEXT="Yukl (2010) ~ Leadership in Organizations">
+<font NAME="SansSerif" SIZE="20"/>
+<hook NAME="accessories/plugins/HierarchicalIcons.properties"/>
+<hook NAME="accessories/plugins/AutomaticLayout.properties"/>
+<node COLOR="#0033ff" CREATED="1276470178011" HGAP="26" ID="_" MODIFIED="1276480756311" POSITION="right" STYLE="fork" TEXT="Chapter 7 ~ Managerial Traits &amp; Skills (T&amp;S)" VSHIFT="-109">
+<font NAME="SansSerif" SIZE="18"/>
+<node COLOR="#00b439" CREATED="1276470212034" ID="Freemind_Link_797760267" MODIFIED="1276477215447" TEXT="Understanding of Traits has Changed">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276473529828" ID="Freemind_Link_1883459803" MODIFIED="1276473630760" TEXT="Early Research">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276473643560" ID="Freemind_Link_1219982028" MODIFIED="1276473650063" TEXT="Physical"/>
+<node COLOR="#111111" CREATED="1276473650636" ID="Freemind_Link_1158956311" MODIFIED="1276473657866" TEXT="Personality"/>
+<node COLOR="#111111" CREATED="1276473658766" ID="Freemind_Link_358948752" MODIFIED="1276473665484" TEXT="Aptitude"/>
+</node>
+<node COLOR="#990000" CREATED="1276473632054" ID="Freemind_Link_37739782" MODIFIED="1276477062379" TEXT="No Traits Identified">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477120572" ID="Freemind_Link_1248020446" MODIFIED="1276477155219" TEXT="Situational">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+</node>
+<node COLOR="#00b439" CREATED="1276470365664" ID="Freemind_Link_1293429617" MODIFIED="1276471050752" TEXT="Different Types of Traits in Leadership Research">
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node COLOR="#00b439" CREATED="1276470420159" ID="Freemind_Link_1834489792" MODIFIED="1276471050752" TEXT="Types of Research Methods Used">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276471799424" ID="Freemind_Link_1090913304" MODIFIED="1276473424734" TEXT="Empirical">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276471893171" ID="Freemind_Link_373993888" MODIFIED="1276471974708" TEXT="Stogdill (1948)">
+<font NAME="SansSerif" SIZE="12"/>
+<node COLOR="#111111" CREATED="1276472075811" ID="Freemind_Link_760133280" MODIFIED="1276472121880" TEXT="124 Trait Studies"/>
+<node COLOR="#111111" CREATED="1276472123141" ID="Freemind_Link_1575544350" MODIFIED="1276472135548" TEXT="Depends on Situation"/>
+</node>
+<node COLOR="#111111" CREATED="1276471979453" ID="Freemind_Link_1515134130" MODIFIED="1276472021326" TEXT="Stogdill (1974)">
+<node COLOR="#111111" CREATED="1276472147770" ID="Freemind_Link_516953010" MODIFIED="1276472159003" TEXT="163 Trait Studies"/>
+<node COLOR="#111111" CREATED="1276472160377" ID="Freemind_Link_1640430272" MODIFIED="1276472199280" TEXT="No Evidence of Universal Leadership Traits"/>
+<node COLOR="#111111" CREATED="1276472199837" ID="Freemind_Link_808629170" MODIFIED="1276472240654" TEXT="2 Leaders w/ a different Pattern of Traits could be successful"/>
+</node>
+<node COLOR="#111111" CREATED="1276472021954" ID="Freemind_Link_1885073889" MODIFIED="1276472063284" TEXT="McClelland (1965)">
+<node COLOR="#111111" CREATED="1276472335129" ID="Freemind_Link_1882047270" MODIFIED="1276472346901" TEXT="Managerial Motivation"/>
+<node COLOR="#111111" CREATED="1276472256111" ID="Freemind_Link_660904205" MODIFIED="1276472274465" TEXT="Thematic Apperception Test (TAT)"/>
+<node COLOR="#111111" CREATED="1276472276783" ID="Freemind_Link_1632866755" MODIFIED="1276472333158" TEXT="3 Needs">
+<node COLOR="#111111" CREATED="1276472366224" ID="Freemind_Link_1120144216" MODIFIED="1276472371257" TEXT="Power">
+<node COLOR="#111111" CREATED="1276472430023" ID="Freemind_Link_860613355" MODIFIED="1276472465728" TEXT="Socialized Power Orientation"/>
+<node COLOR="#111111" CREATED="1276472466700" ID="Freemind_Link_310595725" MODIFIED="1276472481092" TEXT="Personalized Power Orientation"/>
+</node>
+<node COLOR="#111111" CREATED="1276472371733" ID="Freemind_Link_1792561526" MODIFIED="1276472381436" TEXT="Achievement"/>
+<node COLOR="#111111" CREATED="1276472381952" ID="Freemind_Link_971740550" MODIFIED="1276472397824" TEXT="Affiliation"/>
+</node>
+</node>
+<node COLOR="#111111" CREATED="1276472562635" ID="Freemind_Link_1461978654" MODIFIED="1276472577047" TEXT="Miner (1965)">
+<node COLOR="#111111" CREATED="1276472577029" ID="Freemind_Link_1252558415" MODIFIED="1276472722838" TEXT="Motivational Traits"/>
+<node COLOR="#111111" CREATED="1276472625344" ID="Freemind_Link_1547374662" MODIFIED="1276472737457" TEXT="Miner Sentence Completion Scale"/>
+</node>
+</node>
+<node COLOR="#990000" CREATED="1276471951460" ID="Freemind_Link_1912304196" MODIFIED="1276472802988" TEXT="Critical Incident">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276473147060" ID="Freemind_Link_236612558" MODIFIED="1276473176103" TEXT="Personality Traits"/>
+<node COLOR="#111111" CREATED="1276473176898" ID="Freemind_Link_514154114" MODIFIED="1276473191422" TEXT="Interpersonal Skills"/>
+<node COLOR="#111111" CREATED="1276473154891" ID="Freemind_Link_401720282" MODIFIED="1276473209403" TEXT="Conceptual Skills"/>
+</node>
+<node COLOR="#990000" CREATED="1276473225147" ID="Freemind_Link_211793816" MODIFIED="1276473260999" TEXT="Longitudinal">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276473260981" ID="Freemind_Link_781388975" MODIFIED="1276473328270" TEXT="Prediction of Advancement"/>
+<node COLOR="#111111" CREATED="1276473329492" ID="Freemind_Link_1559423447" MODIFIED="1276473339219" TEXT="Traits"/>
+<node COLOR="#111111" CREATED="1276473340103" ID="Freemind_Link_667102294" MODIFIED="1276473353848" TEXT="After 8 &amp; 20 Years"/>
+</node>
+<node COLOR="#990000" CREATED="1276477289457" ID="Freemind_Link_413769605" MODIFIED="1276477320696" TEXT="&quot;Derailed&quot; Managers">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276477442035" ID="Freemind_Link_1519688655" MODIFIED="1276477454411" TEXT="Emotional Stability"/>
+<node COLOR="#111111" CREATED="1276477455150" ID="Freemind_Link_468719703" MODIFIED="1276477464373" TEXT="Defensiveness"/>
+<node COLOR="#111111" CREATED="1276477465026" ID="Freemind_Link_625878115" MODIFIED="1276477471768" TEXT="Integrity"/>
+<node COLOR="#111111" CREATED="1276477472812" ID="Freemind_Link_1334498364" MODIFIED="1276477479570" TEXT="Interpersonal Skills"/>
+<node COLOR="#111111" CREATED="1276477481096" ID="Freemind_Link_32650123" MODIFIED="1276477492551" TEXT="Technical &amp; Cognitive Skills"/>
+</node>
+</node>
+<node COLOR="#00b439" CREATED="1276470485220" ID="Freemind_Link_574388438" MODIFIED="1276478680222" TEXT="Traits &amp; Effectiveness">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276477508231" ID="Freemind_Link_672905863" MODIFIED="1276477607669" TEXT="Energy Level &amp; Stress Tolerance">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477608809" ID="Freemind_Link_1467824635" MODIFIED="1276477635396" TEXT="Self Confidence">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477636258" ID="Freemind_Link_1727817664" MODIFIED="1276477646400" TEXT="Internal Locus of Control">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477647429" ID="Freemind_Link_108603159" MODIFIED="1276477657363" TEXT="Emotinal Maturity">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477657905" ID="Freemind_Link_1046597219" MODIFIED="1276477667808" TEXT="Personal Integrity">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276487075325" ID="Freemind_Link_694031537" LINK="Desktop/Yukl.mm" MODIFIED="1276487075329" TEXT="Socialized Power Motivation">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477691147" ID="Freemind_Link_1582714311" MODIFIED="1276477717576" TEXT="High Achievement Orientation">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276477718964" ID="Freemind_Link_934623231" MODIFIED="1276477875881" TEXT="Low Need for Affliation">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478176880" ID="Freemind_Link_926432447" MODIFIED="1276478186687" TEXT="Big 5">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276478189631" ID="Freemind_Link_1519820677" MODIFIED="1276478195218" TEXT="Surgency">
+<node COLOR="#111111" CREATED="1276478263964" ID="Freemind_Link_64542828" MODIFIED="1276478308485" TEXT="Extroversion/Outgoing"/>
+<node COLOR="#111111" CREATED="1276478270319" ID="Freemind_Link_1015134920" MODIFIED="1276478286376" TEXT="Energy/Activity"/>
+<node COLOR="#111111" CREATED="1276478289805" ID="Freemind_Link_135150284" MODIFIED="1276478319718" TEXT="Need for Power/Assertive"/>
+</node>
+<node COLOR="#111111" CREATED="1276478195839" ID="Freemind_Link_310446868" MODIFIED="1276478203885" TEXT="Conscientiousness">
+<node COLOR="#111111" CREATED="1276478345134" ID="Freemind_Link_439377641" MODIFIED="1276478359000" TEXT="Dependability"/>
+<node COLOR="#111111" CREATED="1276478360828" ID="Freemind_Link_1706145749" MODIFIED="1276478367578" TEXT="Personal Integrity"/>
+<node COLOR="#111111" CREATED="1276478368031" ID="Freemind_Link_1868914469" MODIFIED="1276478377966" TEXT="Need for Achievement"/>
+</node>
+<node COLOR="#111111" CREATED="1276478204490" ID="Freemind_Link_1269698218" MODIFIED="1276478212767" TEXT="Agreeableness">
+<node COLOR="#111111" CREATED="1276478383118" ID="Freemind_Link_822510932" MODIFIED="1276478405606" TEXT="Cheerful/Optimistic"/>
+<node COLOR="#111111" CREATED="1276478406092" ID="Freemind_Link_1622887915" MODIFIED="1276478433527" TEXT="Nurturance/Sympathetic/Helpful"/>
+<node COLOR="#111111" CREATED="1276478434045" ID="Freemind_Link_1041953536" MODIFIED="1276478457160" TEXT="Need for Affiliation"/>
+</node>
+<node COLOR="#111111" CREATED="1276478213245" ID="Freemind_Link_421972897" MODIFIED="1276478250115" TEXT="Adjustment">
+<node COLOR="#111111" CREATED="1276478464506" ID="Freemind_Link_1570616952" MODIFIED="1276478471692" TEXT="Emotional Stability"/>
+<node COLOR="#111111" CREATED="1276478473345" ID="Freemind_Link_1807305289" MODIFIED="1276478480470" TEXT="Self-Esteem"/>
+<node COLOR="#111111" CREATED="1276478481148" ID="Freemind_Link_1921494282" MODIFIED="1276478487714" TEXT="Self-Control"/>
+</node>
+<node COLOR="#111111" CREATED="1276478250545" ID="Freemind_Link_1994153237" MODIFIED="1276478259047" TEXT="Intellectance">
+<node COLOR="#111111" CREATED="1276478493673" ID="Freemind_Link_84886232" MODIFIED="1276478513337" TEXT="Curious/Inquisitive"/>
+<node COLOR="#111111" CREATED="1276478514039" ID="Freemind_Link_105630741" MODIFIED="1276478522252" TEXT="Open-Minded"/>
+<node COLOR="#111111" CREATED="1276478523409" ID="Freemind_Link_285612344" MODIFIED="1276478529679" TEXT="Learning Oriented"/>
+</node>
+</node>
+</node>
+<node COLOR="#00b439" CREATED="1276470546741" ID="Freemind_Link_1377396573" MODIFIED="1276478701537" TEXT="Skills &amp; Effectiveness">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276478618145" ID="Freemind_Link_300205910" MODIFIED="1276478726214" TEXT="Technical">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478726804" ID="Freemind_Link_1817165600" MODIFIED="1276478734897" TEXT="Conceptual">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478735479" ID="Freemind_Link_239185816" MODIFIED="1276478739779" TEXT="Interpersonal">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+</node>
+<node COLOR="#00b439" CREATED="1276470657223" ID="Freemind_Link_1725537840" MODIFIED="1276478825751" TEXT="Relevant Competencies">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276478847180" ID="Freemind_Link_1421672318" MODIFIED="1276478860682" TEXT="Emotional Intelligence">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478862544" ID="Freemind_Link_1617381155" MODIFIED="1276478870237" TEXT="Social Intelligence">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478870890" ID="Freemind_Link_461598783" MODIFIED="1276478886586" TEXT="Systems Thinking">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478887192" ID="Freemind_Link_1629267087" MODIFIED="1276478904657" TEXT="Ability to Learn">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+</node>
+<node COLOR="#00b439" CREATED="1276470848240" ID="Freemind_Link_602192409" MODIFIED="1276478927761" TEXT="Situational Relevance of Skills">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276478933221" ID="Freemind_Link_774701036" MODIFIED="1276478959331" TEXT="Level Management">
+<font NAME="SansSerif" SIZE="14"/>
+<node COLOR="#111111" CREATED="1276479015088" ID="Freemind_Link_1805655931" MODIFIED="1276479160327" TEXT="Low Level Management/High Technical Skill"/>
+<node COLOR="#111111" CREATED="1276479044619" ID="Freemind_Link_955326440" MODIFIED="1276479213816" TEXT="Mid Level Management/Interpersonal Skills"/>
+<node COLOR="#111111" CREATED="1276479053150" ID="Freemind_Link_379671871" MODIFIED="1276479232276" TEXT="Top Level Management/High Conceptual Skills"/>
+</node>
+<node COLOR="#990000" CREATED="1276478959806" ID="Freemind_Link_999990504" MODIFIED="1276478968710" TEXT="Transferability">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276478969755" ID="Freemind_Link_401377904" MODIFIED="1276479011292" TEXT="External Environment">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+</node>
+<node COLOR="#00b439" CREATED="1276479304231" ID="Freemind_Link_1187470068" MODIFIED="1276479581928" TEXT="Application for Managers">
+<font NAME="SansSerif" SIZE="16"/>
+<node COLOR="#990000" CREATED="1276479581902" ID="Freemind_Link_580821382" MODIFIED="1276479592512" TEXT="Maintain Self-Awareness">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276479593005" ID="Freemind_Link_100105342" MODIFIED="1276479602740" TEXT="Develop Relevant Skills">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276479603511" ID="Freemind_Link_143998594" MODIFIED="1276479618770" TEXT="A Strength can be a Weakness">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+<node COLOR="#990000" CREATED="1276479619556" ID="Freemind_Link_231995073" MODIFIED="1276479629316" TEXT="Compensate for Weakness">
+<font NAME="SansSerif" SIZE="14"/>
+</node>
+</node>
+</node>
+<node COLOR="#0033ff" CREATED="1276480007787" ID="Freemind_Link_1114809728" MODIFIED="1276480060328" POSITION="right" TEXT="Key Concepts by Glenn E. Malone" VSHIFT="-132">
+<font NAME="SansSerif" SIZE="18"/>
+</node>
+</node>
+</map>

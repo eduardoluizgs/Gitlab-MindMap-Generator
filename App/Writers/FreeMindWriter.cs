@@ -83,8 +83,11 @@ namespace GitlabMindMapGenerator
             }
 
             // Write <cloud> element
-            // XMLWriter.WriteStartElement(null, "cloud", null);
-            // XMLWriter.WriteEndElement();
+            if (node.Cloud)
+            {
+                XMLWriter.WriteStartElement(null, "cloud", null);
+                XMLWriter.WriteEndElement();
+            }
 
             // Write <attribute> element
             // XMLWriter.WriteStartElement(null, "attribute", null);

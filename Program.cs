@@ -233,7 +233,8 @@ namespace GitlabMindMapGenerator
                 position: FreeMindPosition.Right,
                 icons: icons,
                 style: nodeStyle,
-                folded: issue.MindMapNode.Folded
+                folded: issue.MindMapNode.Folded,
+                cloud: issue.MindMapNode.Cloud
             );
             mindMapNodes.Add(node);
 

@@ -152,6 +152,7 @@ namespace GitlabMindMapGenerator
         public Int64 ID { get; }
         public FreeMindPosition Position { get; set; }
         public bool Folded { get; set; }
+        public bool Cloud { get; set; }
         public string Text { get; set; }
         public string Link { get; set; }
         public List<FreeMindNode> Nodes = new List<FreeMindNode>();
@@ -164,7 +165,8 @@ namespace GitlabMindMapGenerator
             FreeMindPosition position,
             List<FreeMindNodeIcon> icons,
             FreeMindNodeStyle style,
-            bool folded
+            bool folded,
+            bool cloud
         )
         {
             Random random = new Random();
@@ -178,6 +180,7 @@ namespace GitlabMindMapGenerator
             Icons = icons;
             Style = style;
             Folded = folded;
+            Cloud = cloud;
         }
     }
 }

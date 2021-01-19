@@ -170,19 +170,21 @@ namespace GitlabMindMapGenerator
             Match matchFontBold = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Font\-Bold\*\*\:\s).*?(?=\n|$)");
             Match matchBackgroundColor = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Background\-Color\*\*\:\s).*?(?=\n|$)");
             Match matchBorderColor = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Border\-Color\*\*\:\s).*?(?=\n|$)");
-            Match matchBorderFolded = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Folded\*\*\:\s).*?(?=\n|$)");
+            Match matchFolded = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Folded\*\*\:\s).*?(?=\n|$)");
+            Match matchCloud = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Cloud\*\*\:\s).*?(?=\n|$)");
 
             this.MindMapNode = new IssueMindMapNode(
-                new IssueMindMapNodeStyle(
+                style: new IssueMindMapNodeStyle(
                     matchIcons.Value.Split(",", StringSplitOptions.RemoveEmptyEntries) ?? null,
                     matchFontName.Value ?? null,
                     matchFontSize.Value ?? null,
                     matchFontColor.Value ?? null,
                     matchBackgroundColor.Value ?? null,
                     matchBorderColor.Value ?? null,
-                    (matchFontBold.Value != "")
+                    (matchFontBold.Value == "Yes")
                 ),
-                (matchBorderFolded.Value != "")
+                folded: (matchFolded.Value == "Yes"),
+                cloud: (matchCloud.Value == "Yes")
             );
         }
     }
@@ -214,11 +216,13 @@ namespace GitlabMindMapGenerator
     {
         public IssueMindMapNodeStyle Style { get; set; }
         public bool Folded { get; set; }
+        public bool Cloud { get; set; }
 
-        public IssueMindMapNode(IssueMindMapNodeStyle style, bool folded)
+        public IssueMindMapNode(IssueMindMapNodeStyle style, bool folded, bool cloud)
         {
             Style = style;
             Folded = folded;
+            Cloud = cloud;
         }
     }
 

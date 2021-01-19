@@ -14,6 +14,34 @@ namespace GitlabMindMapGenerator
         public static FreeMindPosition Left { get { return new FreeMindPosition("left"); } }
     }
 
+    // FreeMind Font
+    public class FreeMindNodeStyle
+    {
+        public string FontName { get; set; }
+        public string FontSize { get; set; }
+        public string FontColor { get; set; }
+        public string BackgroundColor { get; set; }
+        public string BorderColor { get; set; }
+        public bool Bold { get; set; }
+
+        public FreeMindNodeStyle(
+            string fontName,
+            string fontSize,
+            string fontColor,
+            string backgroundColor,
+            string borderColor,
+            bool bold
+        )
+        {
+            FontName = fontName;
+            FontSize = fontSize;
+            FontColor = fontColor;
+            BackgroundColor = backgroundColor;
+            BorderColor = borderColor;
+            Bold = bold;
+        }
+    }
+
     // FreeMind Icon
     public class FreeMindNodeIcon
     {
@@ -92,16 +120,16 @@ namespace GitlabMindMapGenerator
         };
 
         public FreeMindNodeIcon(string value)
-        { 
+        {
             Validate(value);
-            Value = value; 
+            Value = value;
         }
 
         private string _value;
-        public string Value { 
+        public string Value {
             get {
                 return _value;
-            } 
+            }
             set {
                 Validate(value);
                 _value = value;
@@ -123,20 +151,24 @@ namespace GitlabMindMapGenerator
         public DateTime Modified { get; }
         public Int64 ID { get; }
         public FreeMindPosition Position { get; set; }
+        public bool Folded { get; set; }
         public string Text { get; set; }
         public string Link { get; set; }
         public List<FreeMindNode> Nodes = new List<FreeMindNode>();
         public List<FreeMindNodeIcon> Icons = new List<FreeMindNodeIcon>();
+        public FreeMindNodeStyle Style;
 
         public FreeMindNode(
-            string text, 
+            string text,
             string link,
-            FreeMindPosition position, 
-            List<FreeMindNodeIcon> icons
+            FreeMindPosition position,
+            List<FreeMindNodeIcon> icons,
+            FreeMindNodeStyle style,
+            bool folded
         )
         {
             Random random = new Random();
-            
+
             Created = System.DateTime.Now;
             Modified = Created;
             ID = Convert.ToInt64(random.Next(0, 999999999));
@@ -144,6 +176,8 @@ namespace GitlabMindMapGenerator
             Text = text;
             Link = link;
             Icons = icons;
+            Style = style;
+            Folded = folded;
         }
     }
 }

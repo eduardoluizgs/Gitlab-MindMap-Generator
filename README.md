@@ -7,11 +7,41 @@
   "Gitlab": {
     "Url": "https://gitlab.com",
     "ApiUrl": "/api/v4",
-    "ApiIssuesUrl": "/projects/{0}/issues",
     "ApiToken": "",
-    "ProjectIDs": [],
-    "ProjectLabel": "",
+    "ApiIssuesUrl": "/projects/{0}/issues",
+    "ProjectIDs": [""],
+    "ProjectLabel": "Project",
     "NodesPattern": "(?<=((\\*|\\-|\\+)\\s~Domain|~Theme|~Epic|~Feature|~\"User Story\").*?\\s\\-\\s)(.*?)(?<=\\))"
+  },
+  "MindMap": {
+    "NodeStyle": {
+      "FontName": "SansSerif",
+      "FontSize": "14",
+      "FontColor": "#000000",
+      "BackgroundColor": "#FFFFFF",
+      "BorderColor": "#000000"
+    },
+    "NodeStyleWaiting": {
+      "FontName": "SansSerif",
+      "FontSize": "14",
+      "FontColor": "#000000",
+      "BackgroundColor": "#fffad3",
+      "BorderColor": "#000000"
+    },
+    "NodeStyleRunning": {
+      "FontName": "SansSerif",
+      "FontSize": "14",
+      "FontColor": "#000000",
+      "BackgroundColor": "#d5eaff",
+      "BorderColor": "#000000"
+    },
+    "NodeStyleDone": {
+      "FontName": "SansSerif",
+      "FontSize": "14",
+      "FontColor": "#000000",
+      "BackgroundColor": "#ccffcc",
+      "BorderColor": "#009966"
+    }
   }
 }
 ```

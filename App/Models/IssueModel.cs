@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
@@ -83,8 +84,18 @@ namespace GitlabMindMapGenerator
         [JsonProperty("title")]
         public string Title { get; set; }
 
+        public string _description;
+
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string Description {
+            get {
+                return _description;
+            }
+            set {
+                _description = value;
+                this.ExtractDescriptionInfos();
+            }
+        }
 
         [JsonProperty("web_url")]
         public string WebURL { get; set; }
@@ -96,25 +107,33 @@ namespace GitlabMindMapGenerator
         {
             get {
                 Decimal percentage = 0;
-                if (this.TaskCompletionStatus.CompletedCount > 0 && this.TaskCompletionStatus.Count > 0) {
-                    percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletionStatus.CompletedCount) / Convert.ToDecimal(this.TaskCompletionStatus.Count)) * 100), 0);
+
+                // if issue have childs, percentagem is calculated from childs
+                if (this.Issues.Count > 0){
+                    percentage = Math.Round(Convert.ToDecimal(this.Issues.Sum(x => Convert.ToInt32(x.TaskPercentage)) / this.Issues.Count), 0);
+                } else {
+                    if (this.TaskCompletionStatus.CompletedCount > 0 && this.TaskCompletionStatus.Count > 0) {
+                        percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletionStatus.CompletedCount) / Convert.ToDecimal(this.TaskCompletionStatus.Count)) * 100), 0);
+                    }
                 }
+
                 return percentage;
             }
         }
 
-        public List<Issue> Issues;
+        public IssueMindMapNode MindMapNode { get; set; }
+        public List<Issue> Issues { get; set; }
 
         public Issue()
         {
             Issues = new List<Issue>();
+            List<IssueNode> Nodes = new List<IssueNode>();
         }
 
         public List<IssueNode> GetNodes(string pattern)
         {
             List<IssueNode> nodes = new List<IssueNode>();
-            
-            // TODO : Capturar expressoes da configuracao
+
             MatchCollection matches = Regex.Matches(
                 this.Description,
                 pattern,
@@ -136,11 +155,36 @@ namespace GitlabMindMapGenerator
                         )
                     );
                 }
-            }            
+            }
 
             return nodes;
         }
 
+        private void ExtractDescriptionInfos()
+        {
+            // Mindmap node settings
+            Match matchIcons = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Icons\*\*\:\s).*?(?=\n|$)");
+            Match matchFontName = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Font\-Name\*\*\:\s).*?(?=\n|$)");
+            Match matchFontSize = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Font\-Size\*\*\:\s).*?(?=\n|$)");
+            Match matchFontColor = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Font\-Color\*\*\:\s).*?(?=\n|$)");
+            Match matchFontBold = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Font\-Bold\*\*\:\s).*?(?=\n|$)");
+            Match matchBackgroundColor = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Background\-Color\*\*\:\s).*?(?=\n|$)");
+            Match matchBorderColor = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Border\-Color\*\*\:\s).*?(?=\n|$)");
+            Match matchBorderFolded = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Folded\*\*\:\s).*?(?=\n|$)");
+
+            this.MindMapNode = new IssueMindMapNode(
+                new IssueMindMapNodeStyle(
+                    matchIcons.Value.Split(",", StringSplitOptions.RemoveEmptyEntries) ?? null,
+                    matchFontName.Value ?? null,
+                    matchFontSize.Value ?? null,
+                    matchFontColor.Value ?? null,
+                    matchBackgroundColor.Value ?? null,
+                    matchBorderColor.Value ?? null,
+                    (matchFontBold.Value != "")
+                ),
+                (matchBorderFolded.Value != "")
+            );
+        }
     }
 
     public class IssueNode
@@ -163,6 +207,53 @@ namespace GitlabMindMapGenerator
         public int Count { get; set; }
 
         [JsonProperty("completed_count")]
-        public int CompletedCount { get; set; }                
+        public int CompletedCount { get; set; }
+    }
+
+    public class IssueMindMapNode
+    {
+        public IssueMindMapNodeStyle Style { get; set; }
+        public bool Folded { get; set; }
+
+        public IssueMindMapNode(IssueMindMapNodeStyle style, bool folded)
+        {
+            Style = style;
+            Folded = folded;
+        }
+    }
+
+    public class IssueMindMapNodeStyle
+    {
+        public string[] Icons { get; set; }
+        public string FontName { get; set; }
+        public string FontSize { get; set; }
+        public string FontColor { get; set; }
+        public string BackgroundColor { get; set; }
+        public string BorderColor { get; set; }
+        public bool Bold { get; set; }
+
+        public IssueMindMapNodeStyle(
+            string[] icons,
+            string fontName,
+            string fontSize,
+            string fontColor,
+            string backgroundColor,
+            string borderColor,
+            bool bold
+        )
+        {
+            Icons = icons;
+            FontName = NullIfEmpty(fontName);
+            FontSize = NullIfEmpty(fontSize);
+            FontColor = NullIfEmpty(fontColor);
+            BackgroundColor = NullIfEmpty(backgroundColor);
+            BorderColor = NullIfEmpty(borderColor);
+            Bold = bold;
+        }
+
+        public static string NullIfEmpty(string value)
+        {
+            return string.IsNullOrEmpty(value) ? null : value;
+        }
     }
 }

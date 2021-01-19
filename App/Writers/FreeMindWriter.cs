@@ -52,7 +52,7 @@ namespace GitlabMindMapGenerator
                 BuildNode(node);
             }
 
-            XMLWriter.WriteEndElement(); // Close </node> element    
+            XMLWriter.WriteEndElement(); // Close </node> element
             XMLWriter.WriteEndElement(); // Close </map> element
             XMLWriter.Flush();
 
@@ -68,11 +68,11 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "MODIFIED", null, node.Modified.Ticks.ToString());
             XMLWriter.WriteAttributeString(null, "POSITION", null, node.Position.Value);
             XMLWriter.WriteAttributeString(null, "LINK", null, node.Link);
-            XMLWriter.WriteAttributeString(null, "TEXT", null, node.Text);            
+            XMLWriter.WriteAttributeString(null, "TEXT", null, node.Text);
             XMLWriter.WriteAttributeString(null, "STYLE", null, "bubble");
-            // XMLWriter.WriteAttributeString(null, "COLOR", null, "#FF0303");
-            // XMLWriter.WriteAttributeString(null, "BACKGROUND_COLOR", null, "#FF0303");
-            // XMLWriter.WriteAttributeString(null, "FOLDED", null, "true");
+            XMLWriter.WriteAttributeString(null, "COLOR", null, node.Style.FontColor);
+            XMLWriter.WriteAttributeString(null, "BACKGROUND_COLOR", null, node.Style.BackgroundColor);
+            XMLWriter.WriteAttributeString(null, "FOLDED", null, (node.Folded ? "true" : "false"));
 
             // Write <icon> element
             foreach(FreeMindNodeIcon icon in node.Icons)
@@ -93,25 +93,15 @@ namespace GitlabMindMapGenerator
             // XMLWriter.WriteEndElement();
 
             // Write <font> element
-            // XMLWriter.WriteStartElement(null, "font", null);
-            // XMLWriter.WriteAttributeString(null, "BOLD", null, "true");
-            // XMLWriter.WriteAttributeString(null, "NAME", null, "SansSerif");
-            // XMLWriter.WriteAttributeString(null, "SIZE", null, "14");
-            // XMLWriter.WriteEndElement();
+            XMLWriter.WriteStartElement(null, "font", null);
+            XMLWriter.WriteAttributeString(null, "BOLD", null, (node.Style.Bold ? "true" : "false"));
+            XMLWriter.WriteAttributeString(null, "NAME", null, node.Style.FontName);
+            XMLWriter.WriteAttributeString(null, "SIZE", null, node.Style.FontSize);
+            XMLWriter.WriteEndElement();
 
             // Write <arrowlink> element
             // <linktarget COLOR="#b0b0b0" DESTINATION="Freemind_Link_1309124106" ENDARROW="Default" ENDINCLINATION="303;0;" ID="Freemind_Arrow_Link_892211398" SOURCE="Freemind_Link_1620504932" STARTARROW="None" STARTINCLINATION="303;0;"/>
             // <arrowlink DESTINATION="Freemind_Link_1309124106" ENDARROW="Default" ENDINCLINATION="303;0;" ID="Freemind_Arrow_Link_892211398" STARTARROW="None" STARTINCLINATION="303;0;"/>
-
-            // writer.WriteStartElement("pf", "root", "http://ns");  
-            // writer.WriteStartElement(null, "sub", null);  
-            // writer.WriteAttributeString(null, "att", null, "val");  
-            // writer.WriteString("text");  
-            // writer.WriteEndElement();  
-            // writer.WriteProcessingInstruction("pName", "pValue");  
-            // writer.WriteComment("cValue");  
-            // writer.WriteCData("cdata value");  
-            // writer.WriteEndElement();  
 
             // Write child nodes
             foreach(FreeMindNode chilNode in node.Nodes)

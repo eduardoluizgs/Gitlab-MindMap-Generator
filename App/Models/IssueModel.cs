@@ -100,17 +100,35 @@ namespace GitlabMindMapGenerator
         [JsonProperty("web_url")]
         public string WebURL { get; set; }
 
+        [JsonProperty("state")]
+        public string State { get; set; }
+
+        [JsonProperty("labels")]
+        public string[] Labels { get; set; }
+
+        [JsonProperty("time_stats")]
+        public IssueTimeStats TimeStats { get; set; }
+
+        [JsonProperty("milestone")]
+        public IssueMilestone Milestone { get; set; }
+
+        [JsonProperty("assignee")]
+        public IssueAssignee Assignee { get; set; }
+
+        [JsonProperty("references")]
+        public IssueReferences References { get; set; }
+
         [JsonProperty("task_completion_status")]
         public IssueTaskCompletionStatus TaskCompletionStatus { get; set; }
 
-        public Decimal TaskPercentage
+        public Decimal TaskCompletionPercentage
         {
             get {
                 Decimal percentage = 0;
 
                 // if issue have childs, percentagem is calculated from childs
                 if (this.Issues.Count > 0){
-                    percentage = Math.Round(Convert.ToDecimal(this.Issues.Sum(x => Convert.ToInt32(x.TaskPercentage)) / this.Issues.Count), 0);
+                    percentage = Math.Round(Convert.ToDecimal(this.Issues.Sum(x => Convert.ToInt32(x.TaskCompletionPercentage)) / this.Issues.Count), 0);
                 } else {
                     if (this.TaskCompletionStatus.CompletedCount > 0 && this.TaskCompletionStatus.Count > 0) {
                         percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletionStatus.CompletedCount) / Convert.ToDecimal(this.TaskCompletionStatus.Count)) * 100), 0);
@@ -210,6 +228,72 @@ namespace GitlabMindMapGenerator
 
         [JsonProperty("completed_count")]
         public int CompletedCount { get; set; }
+    }
+
+    public class IssueTimeStats
+    {
+        [JsonProperty("time_estimate")]
+        public Int64 TimeEstimate { get; set; }
+
+        [JsonProperty("total_time_spent")]
+        public Int64 TimeSpent { get; set; }
+
+        public Int64 TimeRemains {
+            get {
+                return ((this.TimeEstimate - this.TimeSpent) >= 0 ? this.TimeEstimate - this.TimeSpent : 0);
+            }
+        }
+        public Int64 TimeExtra {
+            get {
+                return ((this.TimeSpent - this.TimeEstimate) >= 0 ? this.TimeSpent - this.TimeEstimate : 0);
+            }
+        }
+
+        public string TimeEstimateHuman {
+            get {
+                var time = TimeSpan.FromSeconds(this.TimeEstimate).ToString(@"hh\:mm");
+                return $"{time}";
+            }
+        }
+
+        public string TimeSpentHuman {
+            get {
+                var time = TimeSpan.FromSeconds(this.TimeSpent).ToString(@"hh\:mm");
+                return $"{time}";
+            }
+        }
+
+        public string TimeRemainsHuman {
+            get {
+                var time = TimeSpan.FromSeconds(this.TimeRemains).ToString(@"hh\:mm");
+                return $"{time}";
+            }
+        }
+
+        public string TimeExtraHuman {
+            get {
+                var time = TimeSpan.FromSeconds(this.TimeExtra).ToString(@"hh\:mm");
+                return $"{time}";
+            }
+        }
+    }
+
+    public class IssueAssignee
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+    }
+
+    public class IssueMilestone
+    {
+        [JsonProperty("title")]
+        public string Title { get; set; }
+    }
+
+    public class IssueReferences
+    {
+        [JsonProperty("full")]
+        public string Full { get; set; }
     }
 
     public class IssueMindMapNode

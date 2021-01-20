@@ -89,11 +89,22 @@ namespace GitlabMindMapGenerator
                 XMLWriter.WriteEndElement();
             }
 
+            // Write <attribute_layout> element
+            if (node.Attributes.Count > 0){
+                XMLWriter.WriteStartElement(null, "attribute_layout", null);
+                XMLWriter.WriteAttributeString(null, "NAME_WIDTH", null, "85");
+                XMLWriter.WriteAttributeString(null, "VALUE_WIDTH", null, "200");
+                XMLWriter.WriteEndElement();
+            }
+
             // Write <attribute> element
-            // XMLWriter.WriteStartElement(null, "attribute", null);
-            // XMLWriter.WriteAttributeString(null, "NAME", null, "Attribute Teste");
-            // XMLWriter.WriteAttributeString(null, "VALUE", null, "1");
-            // XMLWriter.WriteEndElement();
+            foreach(FreemindAttribute attribute in node.Attributes)
+            {
+                XMLWriter.WriteStartElement(null, "attribute", null);
+                XMLWriter.WriteAttributeString(null, "NAME", null, $"{attribute.Key}:");
+                XMLWriter.WriteAttributeString(null, "VALUE", null, attribute.Value ?? "");
+                XMLWriter.WriteEndElement();
+            }
 
             // Write <font> element
             XMLWriter.WriteStartElement(null, "font", null);

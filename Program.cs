@@ -178,7 +178,8 @@ namespace GitlabMindMapGenerator
                     }
                 }
                 var stream = await response.Content.ReadAsStreamAsync();
-                return new StreamReader(stream, Encoding.UTF8).ReadToEnd();
+                var streamString = new StreamReader(stream, Encoding.UTF8).ReadToEnd();
+                return streamString;
             }
             catch (System.Exception e)
             {
@@ -204,13 +205,14 @@ namespace GitlabMindMapGenerator
         static void AddNode(Issue issue, List<FreeMindNode> mindMapNodes)
         {
             List<FreeMindNodeIcon> icons = new List<FreeMindNodeIcon>();
+            List<FreemindAttribute> attributes = new List<FreemindAttribute>();
             FreeMindNodeStyle nodeStyle;
 
             // Issue status logic
-            if (issue.TaskPercentage == 0) {
+            if (issue.TaskCompletionPercentage == 0) {
                 icons.Add(new FreeMindNodeIcon("hourglass"));
                 nodeStyle = GetNodeStyleWaiting();
-            } else if (issue.TaskPercentage >= 100) {
+            } else if (issue.TaskCompletionPercentage >= 100) {
                 icons.Add(new FreeMindNodeIcon("button_ok"));
                 nodeStyle = GetNodeStyleDone();
             } else {
@@ -218,6 +220,7 @@ namespace GitlabMindMapGenerator
                 nodeStyle = GetNodeStyleRunning();
             }
 
+            // set style of node
             SetNodeStyle(issue, nodeStyle);
 
             // Issue icons
@@ -226,15 +229,31 @@ namespace GitlabMindMapGenerator
                 icons.Add(new FreeMindNodeIcon(icon));
             }
 
+            // Issue attributes
+            attributes.Add(new FreemindAttribute("State", issue.State));
+            attributes.Add(new FreemindAttribute("% Done", $"{issue.TaskCompletionPercentage}%"));
+            attributes.Add(new FreemindAttribute("Task Count", issue.TaskCompletionStatus.Count.ToString()));
+            attributes.Add(new FreemindAttribute("Task Done", issue.TaskCompletionStatus.CompletedCount.ToString()));
+            attributes.Add(new FreemindAttribute("Estimate", issue.TimeStats?.TimeEstimateHuman ?? ""));
+            attributes.Add(new FreemindAttribute("Spent", issue.TimeStats?.TimeSpentHuman ?? ""));
+            attributes.Add(new FreemindAttribute("Remais", issue.TimeStats?.TimeRemainsHuman));
+            attributes.Add(new FreemindAttribute("Extra", issue.TimeStats?.TimeExtraHuman));
+            attributes.Add(new FreemindAttribute("Milestone", issue.Milestone?.Title ?? ""));
+            attributes.Add(new FreemindAttribute("Assignee", issue.Assignee?.Name ?? ""));
+            attributes.Add(new FreemindAttribute("Labels", String.Join(", ", issue.Labels)));
+            attributes.Add(new FreemindAttribute("URL", issue.WebURL));
+            attributes.Add(new FreemindAttribute("Reference", issue.References.Full));
+
             // create parent node
             FreeMindNode node = new FreeMindNode(
-                text: $"{issue.Title} ({issue.TaskPercentage}%)",
+                text: $"{issue.Title} ({issue.TaskCompletionPercentage}%)",
                 link: issue.WebURL,
-                position: FreeMindPosition.Right,
-                icons: icons,
-                style: nodeStyle,
                 folded: issue.MindMapNode.Folded,
-                cloud: issue.MindMapNode.Cloud
+                cloud: issue.MindMapNode.Cloud,
+                position: FreeMindPosition.Right,
+                style: nodeStyle,
+                icons: icons,
+                attributes: attributes
             );
             mindMapNodes.Add(node);
 

@@ -42,6 +42,23 @@ namespace GitlabMindMapGenerator
         }
     }
 
+    // FreeMind Attributes
+    public class FreemindAttribute
+    {
+
+        public string Key { get; set; }
+        public string Value { get; set; }
+
+        public FreemindAttribute(string key, string value)
+        {
+            if (String.IsNullOrEmpty(key))
+                throw new Exception("Invalid Key!");
+
+            Key = key;
+            Value = value ?? "";
+        }
+    }
+
     // FreeMind Icon
     public class FreeMindNodeIcon
     {
@@ -158,15 +175,17 @@ namespace GitlabMindMapGenerator
         public List<FreeMindNode> Nodes = new List<FreeMindNode>();
         public List<FreeMindNodeIcon> Icons = new List<FreeMindNodeIcon>();
         public FreeMindNodeStyle Style;
+        public List<FreemindAttribute> Attributes = new List<FreemindAttribute>();
 
         public FreeMindNode(
             string text,
             string link,
-            FreeMindPosition position,
-            List<FreeMindNodeIcon> icons,
-            FreeMindNodeStyle style,
             bool folded,
-            bool cloud
+            bool cloud,
+            FreeMindPosition position,
+            FreeMindNodeStyle style,
+            List<FreeMindNodeIcon> icons = null,
+            List<FreemindAttribute> attributes = null
         )
         {
             Random random = new Random();
@@ -177,10 +196,11 @@ namespace GitlabMindMapGenerator
             Position = position;
             Text = text;
             Link = link;
-            Icons = icons;
+            Icons = icons ?? Icons;
             Style = style;
             Folded = folded;
             Cloud = cloud;
+            Attributes = attributes ?? Attributes;
         }
     }
 }

@@ -104,14 +104,7 @@ A partir de então, a aplicação irá buscar a issue `#2`, analisando sua descr
 
 Abaixo segue uma estrutura de issues como exemplo para uma árvore de requisitos:
 
-```
-Project
-  |_Domain
-    |_Theme
-      |_Epic
-        |_Feature
-          |_User Story
-```
+![Estrutura de Requisitos](Images/EstruturaRequisitos.png)
 
 Você também pode adicionar configurações extras para cada issue ou nó do mapa mental. Para isto basta utilizar os formatos e parâmetros descritos na seção `MindMap` abaixo.
 

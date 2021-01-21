@@ -228,11 +228,13 @@ namespace GitlabMindMapGenerator
             SetNodeStyle(issue, nodeStyle);
 
             // Isseu label icon
-            GitlabLabelIconMappingSettings labelIcon = GitlabSettings.LabelIconMapping.FirstOrDefault(
-                map => issue.Labels.FirstOrDefault(label => label == map?.Label) != null
-            );
-            if (labelIcon != null) {
-                icons.Add(new FreeMindNodeIcon(labelIcon.Icon));
+            if (GitlabSettings.LabelIconMapping != null) {
+                GitlabLabelIconMappingSettings labelIcon = GitlabSettings.LabelIconMapping.FirstOrDefault(
+                    map => issue.Labels.FirstOrDefault(label => label == map?.Label) != null
+                );
+                if (labelIcon != null) {
+                    icons.Add(new FreeMindNodeIcon(labelIcon.Icon));
+                }
             }
 
             // Issue icons

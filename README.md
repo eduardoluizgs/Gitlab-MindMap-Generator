@@ -37,7 +37,7 @@ Para executar a aplicação é necessário criar o arquivo `AppSettings.json` na
       },
       {
         "Label": "Epic",
-        "Icon": "lauch"
+        "Icon": "launch"
       },
       {
         "Label": "Feature",
@@ -46,6 +46,10 @@ Para executar a aplicação é necessário criar o arquivo `AppSettings.json` na
       {
         "Label": "User Story",
         "Icon": "male2"
+      },
+      {
+        "Label": "Task",
+        "Icon": "pencil"
       }
     ]
   },

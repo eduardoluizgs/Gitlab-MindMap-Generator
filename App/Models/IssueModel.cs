@@ -162,19 +162,13 @@ namespace GitlabMindMapGenerator
         public Decimal TaskCompletionPercentage
         {
             get {
-                // Decimal percentage = 0;
+                Decimal percentage = 0;
 
-                // // if issue have childs, percentagem is calculated from childs
-                // if (this.Issues.Count > 0) {
-                //     percentage = Math.Round(Convert.ToDecimal(this.Issues.Sum(x => Convert.ToInt32(x.TaskCompletionPercentage)) / this.Issues.Count), 0);
-                // } else {
-                //     if (this.TaskCompletionStatus.CompletedCount > 0 && this.TaskCompletionStatus.Count > 0) {
-                //         percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletionStatus.CompletedCount) / Convert.ToDecimal(this.TaskCompletionStatus.Count)) * 100), 0);
-                //     }
-                // }
+                if (this.TaskCompletedCount > 0 && this.TaskCount > 0) {
+                    percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletedCount) / Convert.ToDecimal(this.TaskCount)) * 100), 0);
+                }
 
-                // return percentage;
-                return Math.Round(((Convert.ToDecimal(this.TaskCompletedCount) / Convert.ToDecimal(this.TaskCount)) * 100), 0);
+                return percentage;
             }
         }
 

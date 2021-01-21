@@ -33,6 +33,13 @@ namespace GitlabMindMapGenerator
         public string ProjectLabel { get; set; }
         public string NodesPattern { get; set; }
         public List<string> ProjectIDs { get; set; }
+        public List<GitlabLabelIconMappingSettings> LabelIconMapping { get; set; }
+    }
+
+    public class GitlabLabelIconMappingSettings
+    {
+        public string Label { get; set; }
+        public string Icon { get; set; }
     }
 
     public class MindMapSettings : ISettings

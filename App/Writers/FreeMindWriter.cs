@@ -39,6 +39,11 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteStartElement(null, "map", null);
             XMLWriter.WriteAttributeString(null, "version", null, this.Version);
 
+            // Write <attribute_registry> element
+            XMLWriter.WriteStartElement(null, "attribute_registry", null);
+            XMLWriter.WriteAttributeString(null, "SHOW_ATTRIBUTES", null, "hide");
+            XMLWriter.WriteEndElement();
+
             // Write <node> element
             XMLWriter.WriteStartElement(null, "node", null);
             XMLWriter.WriteAttributeString(null, "ID", null, $"Freemind_Link_{Convert.ToInt64(random.Next(0, 999999999))}");
@@ -73,6 +78,15 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "COLOR", null, node.Style.FontColor);
             XMLWriter.WriteAttributeString(null, "BACKGROUND_COLOR", null, node.Style.BackgroundColor);
             XMLWriter.WriteAttributeString(null, "FOLDED", null, (node.Folded ? "true" : "false"));
+
+            // Write <richcontent> element
+            // <richcontent TYPE="NOTE">
+            //   <html>
+            //     <body>
+            //       Text
+            //     </body>
+            //   </html>
+            // </richcontent>
 
             // Write <icon> element
             foreach(FreeMindNodeIcon icon in node.Icons)

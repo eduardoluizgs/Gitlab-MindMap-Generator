@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -226,6 +227,14 @@ namespace GitlabMindMapGenerator
             // set style of node
             SetNodeStyle(issue, nodeStyle);
 
+            // Isseu label icon
+            GitlabLabelIconMappingSettings labelIcon = GitlabSettings.LabelIconMapping.FirstOrDefault(
+                map => issue.Labels.FirstOrDefault(label => label == map.Label) != null
+            );
+            if (labelIcon != null) {
+                icons.Add(new FreeMindNodeIcon(labelIcon.Icon));
+            }
+
             // Issue icons
             foreach(string icon in issue.MindMapNode.Style.Icons)
             {
@@ -249,7 +258,7 @@ namespace GitlabMindMapGenerator
 
             // create parent node
             FreeMindNode node = new FreeMindNode(
-                text: $"{issue.Title} ({issue.TaskCompletion} - {issue.TaskCompletionPercentage}%)",
+                text: $"{issue.Title} - #{issue.IID} ({issue.TaskCompletion} - {issue.TaskCompletionPercentage}%)",
                 link: issue.WebURL,
                 folded: issue.MindMapNode.Folded,
                 cloud: issue.MindMapNode.Cloud,

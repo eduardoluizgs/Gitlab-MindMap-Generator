@@ -21,7 +21,33 @@ Para executar a aplicação é necessário criar o arquivo `AppSettings.json` na
     "ApiIssuesUrl": "/projects/{0}/issues",
     "ProjectIDs": [""],
     "ProjectLabel": "Project",
-    "NodesPattern": "(?<=((\\*|\\-|\\+)\\s~Domain|~Theme|~Epic|~Feature|~\"User Story\").*?\\s\\-\\s)(.*?)(?<=\\))"
+    "NodesPattern": "(?<=((\\*|\\-|\\+)\\s~Domain|~Theme|~Epic|~Feature|~\"User Story\").*?\\s\\-\\s)(.*?)(?<=\\))",
+    "LabelIconMapping": [
+      {
+        "Label": "Project",
+        "Icon": "desktop_new"
+      },
+      {
+        "Label": "Domain",
+        "Icon": "folder"
+      },
+      {
+        "Label": "Theme",
+        "Icon": "list"
+      },
+      {
+        "Label": "Epic",
+        "Icon": "lauch"
+      },
+      {
+        "Label": "Feature",
+        "Icon": "bookmark"
+      },
+      {
+        "Label": "User Story",
+        "Icon": "male2"
+      }
+    ]
   },
   "MindMap": {
     "NodeStyle": {

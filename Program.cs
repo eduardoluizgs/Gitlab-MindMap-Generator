@@ -229,7 +229,7 @@ namespace GitlabMindMapGenerator
 
             // Isseu label icon
             GitlabLabelIconMappingSettings labelIcon = GitlabSettings.LabelIconMapping.FirstOrDefault(
-                map => issue.Labels.FirstOrDefault(label => label == map.Label) != null
+                map => issue.Labels.FirstOrDefault(label => label == map?.Label) != null
             );
             if (labelIcon != null) {
                 icons.Add(new FreeMindNodeIcon(labelIcon.Icon));

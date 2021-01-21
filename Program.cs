@@ -33,10 +33,13 @@ namespace GitlabMindMapGenerator
 
                 ConfigureHttpClients();
                 await GetMindMapContent();
-                WriteMindMap();   
+                WriteMindMap();
 
-                if (HasError)
-                    Console.WriteLine("MindMap generated with error. Please, see log!");
+                if (HasError) {
+                    Console.WriteLine("MindMap generated with ERROR. Please, see log!");
+                } else {
+                    Console.WriteLine("MindMap generated with success!");
+                }
             }
             catch (System.Exception e)
             {
@@ -232,8 +235,8 @@ namespace GitlabMindMapGenerator
             // Issue attributes
             attributes.Add(new FreemindAttribute("State", issue.State));
             attributes.Add(new FreemindAttribute("% Done", $"{issue.TaskCompletionPercentage}%"));
-            attributes.Add(new FreemindAttribute("Task Count", issue.TaskCompletionStatus.Count.ToString()));
-            attributes.Add(new FreemindAttribute("Task Done", issue.TaskCompletionStatus.CompletedCount.ToString()));
+            attributes.Add(new FreemindAttribute("Task Count", issue.TaskCount.ToString()));
+            attributes.Add(new FreemindAttribute("Task Done", issue.TaskCompletedCount.ToString()));
             attributes.Add(new FreemindAttribute("Estimate", issue.TimeStats?.TimeEstimateHuman ?? ""));
             attributes.Add(new FreemindAttribute("Spent", issue.TimeStats?.TimeSpentHuman ?? ""));
             attributes.Add(new FreemindAttribute("Remais", issue.TimeStats?.TimeRemainsHuman));
@@ -242,11 +245,11 @@ namespace GitlabMindMapGenerator
             attributes.Add(new FreemindAttribute("Assignee", issue.Assignee?.Name ?? ""));
             attributes.Add(new FreemindAttribute("Labels", String.Join(", ", issue.Labels)));
             attributes.Add(new FreemindAttribute("URL", issue.WebURL));
-            attributes.Add(new FreemindAttribute("Reference", issue.References.Full));
+            attributes.Add(new FreemindAttribute("Reference", issue.References?.Full ?? ""));
 
             // create parent node
             FreeMindNode node = new FreeMindNode(
-                text: $"{issue.Title} ({issue.TaskCompletionPercentage}%)",
+                text: $"{issue.Title} ({issue.TaskCompletion} - {issue.TaskCompletionPercentage}%)",
                 link: issue.WebURL,
                 folded: issue.MindMapNode.Folded,
                 cloud: issue.MindMapNode.Cloud,

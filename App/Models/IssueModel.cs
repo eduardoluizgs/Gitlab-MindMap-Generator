@@ -119,23 +119,62 @@ namespace GitlabMindMapGenerator
         public IssueReferences References { get; set; }
 
         [JsonProperty("task_completion_status")]
-        public IssueTaskCompletionStatus TaskCompletionStatus { get; set; }
+        private IssueTaskCompletionStatus TaskCompletionStatus { get; set; }
+
+        public int TaskCount {
+            get {
+                int count = 0;
+
+                // if issue have childs, count is calculated from childs
+                if (this.Issues.Count > 0) {
+                    count = this.Issues.Count;
+                } else {
+                    count = this.TaskCompletionStatus.Count;
+                }
+
+                return count;
+            }
+        }
+
+        public int TaskCompletedCount
+        {
+            get {
+                int completedCount = 0;
+
+                // if issue have childs, completed count is calculated from childs
+                if (this.Issues.Count > 0) {
+                    completedCount = this.Issues.Sum(x => (x.TaskCompletionPercentage == 100 ? 1 : 0));
+                } else {
+                    completedCount = this.TaskCompletionStatus.CompletedCount;
+                }
+
+                return completedCount;
+            }
+        }
+
+        public string TaskCompletion
+        {
+            get {
+                return $"{this.TaskCompletedCount}/{this.TaskCount}";
+            }
+        }
 
         public Decimal TaskCompletionPercentage
         {
             get {
-                Decimal percentage = 0;
+                // Decimal percentage = 0;
 
-                // if issue have childs, percentagem is calculated from childs
-                if (this.Issues.Count > 0){
-                    percentage = Math.Round(Convert.ToDecimal(this.Issues.Sum(x => Convert.ToInt32(x.TaskCompletionPercentage)) / this.Issues.Count), 0);
-                } else {
-                    if (this.TaskCompletionStatus.CompletedCount > 0 && this.TaskCompletionStatus.Count > 0) {
-                        percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletionStatus.CompletedCount) / Convert.ToDecimal(this.TaskCompletionStatus.Count)) * 100), 0);
-                    }
-                }
+                // // if issue have childs, percentagem is calculated from childs
+                // if (this.Issues.Count > 0) {
+                //     percentage = Math.Round(Convert.ToDecimal(this.Issues.Sum(x => Convert.ToInt32(x.TaskCompletionPercentage)) / this.Issues.Count), 0);
+                // } else {
+                //     if (this.TaskCompletionStatus.CompletedCount > 0 && this.TaskCompletionStatus.Count > 0) {
+                //         percentage = Math.Round(((Convert.ToDecimal(this.TaskCompletionStatus.CompletedCount) / Convert.ToDecimal(this.TaskCompletionStatus.Count)) * 100), 0);
+                //     }
+                // }
 
-                return percentage;
+                // return percentage;
+                return Math.Round(((Convert.ToDecimal(this.TaskCompletedCount) / Convert.ToDecimal(this.TaskCount)) * 100), 0);
             }
         }
 

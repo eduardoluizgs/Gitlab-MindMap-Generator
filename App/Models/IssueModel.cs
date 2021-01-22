@@ -172,6 +172,19 @@ namespace GitlabMindMapGenerator
             }
         }
 
+        public Decimal TaskCompletionAvarage
+        {
+            get {
+                Decimal avarage = 0;
+
+                if (this.TaskCompletedCount > 0 && this.TaskCount > 0) {
+                    avarage = Math.Round((this.Issues.Sum(x => x.TaskCompletionPercentage) / this.Issues.Count) * 100, 0);
+                }
+
+                return avarage;
+            }
+        }
+
         public IssueMindMapNode MindMapNode { get; set; }
         public List<Issue> Issues { get; set; }
 

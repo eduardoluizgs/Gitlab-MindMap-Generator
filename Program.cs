@@ -213,15 +213,15 @@ namespace GitlabMindMapGenerator
             FreeMindNodeStyle nodeStyle;
 
             // Issue status logic
-            if (issue.TaskCompletionPercentage == 0) {
-                icons.Add(new FreeMindNodeIcon("hourglass"));
-                nodeStyle = GetNodeStyleWaiting();
-            } else if (issue.TaskCompletionPercentage >= 100) {
+            if (issue.TaskCompletionPercentage == 100) {
                 icons.Add(new FreeMindNodeIcon("button_ok"));
                 nodeStyle = GetNodeStyleDone();
-            } else {
+            if (issue.TaskCompletionPercentage > 0 || issue.TaskCompletionAvarage > 0) {
                 icons.Add(new FreeMindNodeIcon("forward"));
                 nodeStyle = GetNodeStyleRunning();
+            } else {
+                icons.Add(new FreeMindNodeIcon("hourglass"));
+                nodeStyle = GetNodeStyleWaiting();
             }
 
             // set style of node

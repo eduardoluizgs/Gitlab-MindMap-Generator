@@ -4,25 +4,7 @@ using System.Reflection;
 
 namespace GitlabMindMapGenerator
 {
-    public class ISettings
-    {
-        // public object this[string propertyName] 
-        // {
-        // get{
-        //     // probably faster without reflection:
-        //     // like:  return Properties.Settings.Default.PropertyValues[propertyName]
-        //     // instead of the following
-        //     Type myType = typeof(ISettings);                   
-        //     PropertyInfo myPropInfo = myType.GetProperty(propertyName);
-        //     return myPropInfo.GetValue(this, null);
-        // }
-        // set{
-        //     Type myType = typeof(ISettings);                   
-        //     PropertyInfo myPropInfo = myType.GetProperty(propertyName);
-        //     myPropInfo.SetValue(this, value, null);
-        // }
-        // }
-    }
+    public class ISettings { }
 
     public class GitlabSettings : ISettings
     {
@@ -30,27 +12,37 @@ namespace GitlabMindMapGenerator
         public string ApiUrl { get; set; }
         public string ApiToken { get; set; }
         public string ApiIssuesUrl { get; set; }
+        public string ApiMergeRequestUrl { get; set; }
         public string ProjectLabel { get; set; }
         public string NodesPattern { get; set; }
+        public string LabelTask { get; set; }
         public List<string> ProjectIDs { get; set; }
-        public List<GitlabLabelIconMappingSettings> LabelIconMapping { get; set; }
+        public List<string> IssueBoardStages { get; set; }
+        public List<GitlabIssueStageSetting> IssueStages { get; set; }
+        public List<GitlabLabelMappingSetting> LabelMapping { get; set; }
     }
 
-    public class GitlabLabelIconMappingSettings
+    public class GitlabIssueStageSetting
+    {
+        public string Title { get; set; }
+        public string Pattern { get; set; }
+    }
+
+    public class GitlabLabelMappingSetting
     {
         public string Label { get; set; }
         public string Icon { get; set; }
     }
 
-    public class MindMapSettings : ISettings
+    public class MindMapSetting : ISettings
     {
-        public MindMapNodeStyleSettings NodeStyle { get; set; }
-        public MindMapNodeStyleSettings NodeStyleWaiting { get; set; }
-        public MindMapNodeStyleSettings NodeStyleRunning { get; set; }
-        public MindMapNodeStyleSettings NodeStyleDone { get; set; }
+        public MindMapNodeStyleSetting NodeStyle { get; set; }
+        public MindMapNodeStyleSetting NodeStyleWaiting { get; set; }
+        public MindMapNodeStyleSetting NodeStyleRunning { get; set; }
+        public MindMapNodeStyleSetting NodeStyleDone { get; set; }
     }
 
-    public class MindMapNodeStyleSettings : ISettings
+    public class MindMapNodeStyleSetting : ISettings
     {
         public string FontName { get; set; }
         public string FontSize { get; set; }

@@ -179,11 +179,11 @@ namespace GitlabMindMapGenerator
 
         public FreeMindNode(
             string text,
-            string link,
             bool folded,
-            bool cloud,
-            FreeMindPosition position,
             FreeMindNodeStyle style,
+            bool cloud = false,
+            FreeMindPosition position = null,
+            string link = null,
             List<FreeMindNodeIcon> icons = null,
             List<FreemindAttribute> attributes = null
         )
@@ -193,9 +193,9 @@ namespace GitlabMindMapGenerator
             Created = System.DateTime.Now;
             Modified = Created;
             ID = Convert.ToInt64(random.Next(0, 999999999));
-            Position = position;
+            Position = position ?? FreeMindPosition.Right;
             Text = text;
-            Link = link;
+            Link = link ?? "";
             Icons = icons ?? Icons;
             Style = style;
             Folded = folded;

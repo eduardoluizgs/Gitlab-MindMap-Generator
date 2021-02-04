@@ -21,7 +21,7 @@ namespace GitlabMindMapGenerator
         static HttpClient GitlabApiHttpClient;
         static bool HasError = false;
         static GitlabSettings GitlabSettings = new GitlabSettings();
-        static MindMapSettings MindMapSettings = new MindMapSettings();
+        static MindMapSetting MindMapSettings = new MindMapSetting();
         static string InvalidSettingMessage = "The configuration `{0}` is invalid. Please, review AppSettings.json file and try again.";
 
         static async Task Main(string[] args)
@@ -140,6 +140,9 @@ namespace GitlabMindMapGenerator
                 var tempIssues = JsonConvert.DeserializeObject<List<Issue>>(content);
 
                 if (tempIssues.Count > 0) {
+                    foreach(Issue issue in tempIssues) {
+                        await GetIssueMergeRequests(issue);
+                    }
                     Issues.AddRange(tempIssues);
                 }
             }
@@ -149,20 +152,48 @@ namespace GitlabMindMapGenerator
         {
             List<Issue> issues = new List<Issue>();
 
-            foreach(IssueNode node in issue.GetNodes(GitlabSettings.NodesPattern))
+            foreach(IssueNode node in issue.GetNodesInDescription(GitlabSettings.NodesPattern))
             {
+                // get issue content
                 var content = await GetIssueAsync(
                     GitlabSettings.ApiUrl +
-                    String.Format(GitlabSettings.ApiIssuesUrl, WebUtility.UrlEncode(node.ProjectReference)) +
+                    String.Format(
+                        GitlabSettings.ApiIssuesUrl,
+                        WebUtility.UrlEncode(node.ProjectReference)
+                    ) +
                     $"/{node.IID}"
                 );
-
-                if (content == null) continue;
+                if (content == null)
+                    continue;
 
                 var tempIssue = JsonConvert.DeserializeObject<Issue>(content);
+
+                await GetIssueMergeRequests(tempIssue);
+
                 issue.Issues.Add(tempIssue);
 
                 await GetIssues(tempIssue);
+            }
+        }
+
+        static async Task GetIssueMergeRequests(Issue issue)
+        {
+            // get merge request from issue
+            var content = await GetIssueAsync(
+                GitlabSettings.ApiUrl +
+                String.Format(
+                    GitlabSettings.ApiMergeRequestUrl,
+                    WebUtility.UrlEncode(issue.ProjectID.ToString()),
+                    issue.IID
+                )
+            );
+            if (content == null)
+                return;
+
+            var tempMergeRequests = JsonConvert.DeserializeObject<List<MergeRequest>>(content);
+
+            if (tempMergeRequests.Count > 0) {
+                issue.MergeRequests.AddRange(tempMergeRequests);
             }
         }
 
@@ -210,13 +241,22 @@ namespace GitlabMindMapGenerator
         {
             List<FreeMindNodeIcon> icons = new List<FreeMindNodeIcon>();
             List<FreemindAttribute> attributes = new List<FreemindAttribute>();
+            List<FreemindAttribute> attributesStages = new List<FreemindAttribute>();
             FreeMindNodeStyle nodeStyle;
+            GitlabLabelMappingSetting label = null;
+
+            // get issue label object
+            if (GitlabSettings.LabelMapping != null) {
+                label = GitlabSettings.LabelMapping.FirstOrDefault(
+                    map => issue.Labels.FirstOrDefault(label => label == map?.Label) != null
+                );
+            }
 
             // Issue status logic
             if (issue.TaskCompletionPercentage == 100) {
                 icons.Add(new FreeMindNodeIcon("button_ok"));
                 nodeStyle = GetNodeStyleDone();
-            if (issue.TaskCompletionPercentage > 0 || issue.TaskCompletionAvarage > 0) {
+            } else if (issue.TaskCompletionPercentage > 0 || issue.TaskCompletionAvarage > 0) {
                 icons.Add(new FreeMindNodeIcon("forward"));
                 nodeStyle = GetNodeStyleRunning();
             } else {
@@ -227,14 +267,9 @@ namespace GitlabMindMapGenerator
             // set style of node
             SetNodeStyle(issue, nodeStyle);
 
-            // Isseu label icon
-            if (GitlabSettings.LabelIconMapping != null) {
-                GitlabLabelIconMappingSettings labelIcon = GitlabSettings.LabelIconMapping.FirstOrDefault(
-                    map => issue.Labels.FirstOrDefault(label => label == map?.Label) != null
-                );
-                if (labelIcon != null) {
-                    icons.Add(new FreeMindNodeIcon(labelIcon.Icon));
-                }
+            // Isseu label
+            if (label != null) {
+                icons.Add(new FreeMindNodeIcon(label.Icon));
             }
 
             // Issue icons
@@ -245,9 +280,11 @@ namespace GitlabMindMapGenerator
 
             // Issue attributes
             attributes.Add(new FreemindAttribute("State", issue.State));
+            attributes.Add(new FreemindAttribute("Board Stage", issue.GetStageInBoard(GitlabSettings.IssueBoardStages) ?? ""));
             attributes.Add(new FreemindAttribute("% Done", $"{issue.TaskCompletionPercentage}%"));
             attributes.Add(new FreemindAttribute("Task Count", issue.TaskCount.ToString()));
             attributes.Add(new FreemindAttribute("Task Done", issue.TaskCompletedCount.ToString()));
+            attributes.Add(new FreemindAttribute("Due Date", (issue.DueDate != null ? ((DateTime)issue.DueDate).ToString("dd/MM/yyyy") : "")));
             attributes.Add(new FreemindAttribute("Estimate", issue.TimeStats?.TimeEstimateHuman ?? ""));
             attributes.Add(new FreemindAttribute("Spent", issue.TimeStats?.TimeSpentHuman ?? ""));
             attributes.Add(new FreemindAttribute("Remais", issue.TimeStats?.TimeRemainsHuman));
@@ -271,10 +308,61 @@ namespace GitlabMindMapGenerator
             );
             mindMapNodes.Add(node);
 
+            // create stage nodes
+            if (label.Label == GitlabSettings.LabelTask) {
+                SetIssueStatesNodes(issue, node);
+            }
+
             // crate child nodes
             foreach(Issue childIssue in issue.Issues)
             {
                 AddNode(childIssue, node.Nodes);
+            }
+        }
+
+        static void SetIssueStatesNodes(Issue issue, FreeMindNode node)
+        {
+            IssueStage stage;
+
+            foreach(var settingStage in GitlabSettings.IssueStages)
+            {
+                List<FreeMindNodeIcon> stageIcons = new List<FreeMindNodeIcon>();
+
+                if (settingStage.Pattern == "[Reviewed]") {
+                    stage = issue.GetStageReview();
+                    if (stage != null) {
+
+                        if (stage.Done) {
+                            stageIcons.Add(new FreeMindNodeIcon("button_ok"));
+                        } else {
+                            stageIcons.Add(new FreeMindNodeIcon("help"));
+                        }
+
+                        node.Nodes.Add(new FreeMindNode(
+                            text: $"{settingStage.Title}",
+                            folded: true,
+                            style: GetNodeStyle(),
+                            icons: stageIcons
+                        ));
+                    }
+                } else {
+                    stage = issue.GetStageInDescription(settingStage.Pattern);
+                    if (stage != null) {
+
+                        if (stage.Done) {
+                            stageIcons.Add(new FreeMindNodeIcon("button_ok"));
+                        } else {
+                            stageIcons.Add(new FreeMindNodeIcon("help"));
+                        }
+
+                        node.Nodes.Add(new FreeMindNode(
+                            text: $"{settingStage.Title}",
+                            folded: false,
+                            style: GetNodeStyle(),
+                            icons: stageIcons
+                        ));
+                    }
+                }
             }
         }
 
@@ -286,6 +374,18 @@ namespace GitlabMindMapGenerator
             style.BackgroundColor = issue.MindMapNode.Style.BackgroundColor ?? style.BackgroundColor;
             style.BorderColor = issue.MindMapNode.Style.BorderColor ?? style.BorderColor;
             style.Bold = issue.MindMapNode.Style.Bold || false;
+        }
+
+        static FreeMindNodeStyle GetNodeStyle()
+        {
+            return new FreeMindNodeStyle(
+                 MindMapSettings.NodeStyle.FontName,
+                 MindMapSettings.NodeStyle.FontSize,
+                 MindMapSettings.NodeStyle.FontColor,
+                 MindMapSettings.NodeStyle.BackgroundColor,
+                 MindMapSettings.NodeStyle.BorderColor,
+                 bold: false
+            );
         }
 
         static FreeMindNodeStyle GetNodeStyleWaiting()

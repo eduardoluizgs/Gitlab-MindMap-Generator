@@ -24,11 +24,11 @@ namespace GitlabMindMapGenerator
     ///     "author":
     ///     {
     ///         "id": 3295819,
-    ///         "name": "Eduardo Luiz",
-    ///         "username": "eduardoluizgs",
+    ///         "name": "",
+    ///         "username": "",
     ///         "state": "active",
-    ///         "avatar_url": "https://secure.gravatar.com/avatar/17d21b0265cf0f2ce8b14b53339bc4bf?s=80u0026d=identicon",
-    ///         "web_url": "https://gitlab.com/eduardoluizgs"
+    ///         "avatar_url": "",
+    ///         "web_url": ""
     ///     },
     ///     "assignee": null,
     ///     "user_notes_count": 0,
@@ -38,7 +38,7 @@ namespace GitlabMindMapGenerator
     ///     "due_date": null,
     ///     "confidential": false,
     ///     "discussion_locked": null,
-    ///     "web_url": "https://gitlab.com/eduardoluizgs/gitlab-mindmap-generator/-/issues/1",
+    ///     "web_url": "",
     ///     "time_stats":
     ///     {
     ///         "time_estimate": 0,
@@ -66,7 +66,7 @@ namespace GitlabMindMapGenerator
     ///     {
     ///         "short": "#1",
     ///         "relative": "#1",
-    ///         "full": "eduardoluizgs/gitlab-mindmap-generator#1"
+    ///         "full": ""
     ///     },
     ///     "moved_to_id": null,
     ///     "service_desk_reply_to": null,
@@ -97,6 +97,9 @@ namespace GitlabMindMapGenerator
             }
         }
 
+        [JsonProperty("project_id")]
+        public Int64 ProjectID { get; set; }
+
         [JsonProperty("web_url")]
         public string WebURL { get; set; }
 
@@ -117,6 +120,9 @@ namespace GitlabMindMapGenerator
 
         [JsonProperty("references")]
         public IssueReferences References { get; set; }
+
+        [JsonProperty("due_date")]
+        public DateTime? DueDate { get; set; }
 
         [JsonProperty("task_completion_status")]
         private IssueTaskCompletionStatus TaskCompletionStatus { get; set; }
@@ -187,14 +193,15 @@ namespace GitlabMindMapGenerator
 
         public IssueMindMapNode MindMapNode { get; set; }
         public List<Issue> Issues { get; set; }
+        public List<MergeRequest> MergeRequests { get; set; }
 
         public Issue()
         {
             Issues = new List<Issue>();
-            List<IssueNode> Nodes = new List<IssueNode>();
+            MergeRequests = new List<MergeRequest>();
         }
 
-        public List<IssueNode> GetNodes(string pattern)
+        public List<IssueNode> GetNodesInDescription(string pattern)
         {
             List<IssueNode> nodes = new List<IssueNode>();
 
@@ -222,6 +229,36 @@ namespace GitlabMindMapGenerator
             }
 
             return nodes;
+        }
+
+        public string GetStageInBoard(List<string> stages)
+        {
+            return stages.FirstOrDefault(
+                defatulStage => (this.Labels.FirstOrDefault(label => label == defatulStage) != null)
+            );
+        }
+
+        public IssueStage GetStageInDescription(string pattern)
+        {
+            Match matchStage = Regex.Match(this.Description, pattern);
+            if (matchStage.Value != "")
+            {
+                return new IssueStage(
+                    matchStage.Groups[3].Value,
+                    (matchStage.Groups[2].Value.ToUpper() == "X")
+                );
+            }
+            return null;
+        }
+
+        public IssueStage GetStageReview()
+        {
+            MergeRequest openMR = this.MergeRequests.Find(x => x.State == "opened");
+
+            return new IssueStage(
+                "Reviewed",
+                (openMR == null ? true : false)
+            );
         }
 
         private void ExtractDescriptionInfos()
@@ -388,6 +425,18 @@ namespace GitlabMindMapGenerator
         public static string NullIfEmpty(string value)
         {
             return string.IsNullOrEmpty(value) ? null : value;
+        }
+    }
+
+    public class IssueStage
+    {
+        public string Name { get; set; }
+        public bool Done { get; set; }
+
+        public IssueStage(string name, bool done)
+        {
+            Name = name;
+            Done = done;
         }
     }
 }

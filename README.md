@@ -19,10 +19,37 @@ Para executar a aplicação é necessário criar o arquivo `AppSettings.json` na
     "ApiUrl": "/api/v4",
     "ApiToken": "<Gitlab-API-Token>",
     "ApiIssuesUrl": "/projects/{0}/issues",
-    "ProjectIDs": [""],
+    "ApiMergeRequestUrl": "/projects/{0}/issues/{1}/related_merge_requests",
+    "ProjectIDs": ["eduardoluizgs/gitlab-mindmap-generator"],
     "ProjectLabel": "Project",
-    "NodesPattern": "(?<=((\\*|\\-|\\+)\\s~Domain|~Theme|~Epic|~Feature|~\"User Story\").*?\\s\\-\\s)(.*?)(?<=\\))",
-    "LabelIconMapping": [
+    "NodesPattern": "(?<=((\\*|\\-|\\+)\\s~Domain|~Theme|~Epic|~Feature|~\"User Story\"|~Task).*?\\s\\-\\s)(.*?)(?<=\\))",
+    "ValidatedPattern": "(\\*|\\+|\\-)\\s\\[\\s\\]\\sImplementar\\stestes",
+    "TestedPattern": "(\\*|\\+|\\-)\\s\\[\\s\\]\\sImplementar\\stestes",
+    "IssueBoardStages": ["To Do", "Doing", "Block", "Review", "Homologation"],
+    "IssueStages": [
+      {
+        "title": "Analisado",
+        "pattern": "(\\*|\\-|\\+)\\s\\[(\\s|x|X)\\]\\s(?i)(Análise)"
+      },
+      {
+        "title": "Implementado",
+        "pattern": "(\\*|\\-|\\+)\\s\\[(\\s|x|X)\\]\\s(?i)(Implementação)"
+      },
+      {
+        "title": "Testado",
+        "pattern": "(\\*|\\-|\\+)\\s\\[(\\s|x|X)\\]\\s(?i)(Testes)"
+      },
+      {
+        "title": "Validado",
+        "pattern": "(\\*|\\-|\\+)\\s\\[(\\s|x|X)\\]\\s(?i)(Validação)"
+      },
+      {
+        "title": "Revisado",
+        "pattern": "[Reviewed]"
+      }
+    ],
+    "LabelTask": "Task",
+    "LabelMapping": [
       {
         "Label": "Project",
         "Icon": "desktop_new"

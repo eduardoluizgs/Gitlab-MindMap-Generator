@@ -30,6 +30,9 @@ namespace GitlabMindMapGenerator
                 Console.WriteLine("Write MindMap!");
                 WriteMindMap();
 
+                Console.WriteLine("Write Gannt Chart!");
+                WriteGanttChart();
+
                 // Finaly
                 Console.WriteLine("MindMap generated with success!");
             }
@@ -113,6 +116,15 @@ namespace GitlabMindMapGenerator
                 filePath: Path.Join(Directory.GetCurrentDirectory(), "Output", "FreeMindMap.mm"),
                 gitlabSettings: GitlabSettings,
                 mindMapSettings: MindMapSettings
+            );
+            builder.Build();
+        }
+
+        static void WriteGanttChart()
+        {
+            GanttProjectBuilder builder = new GanttProjectBuilder(
+                issues: Issues,
+                filePath: Path.Join(Directory.GetCurrentDirectory(), "Output", "GantProject.gan")
             );
             builder.Build();
         }

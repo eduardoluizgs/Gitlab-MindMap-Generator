@@ -1,7 +1,7 @@
 namespace GitlabMindMapGenerator
 {
-    interface IBuilder
+    interface IWriter
     {
-        void Build() { }
+        void Write() { }
     }
 }

@@ -36,7 +36,7 @@ namespace GitlabMindMapGenerator
                 AddNode(issue, mindMap.Nodes);
             }
 
-            mindMap.BuldMindMap();
+            mindMap.Write();
         }
 
         private void AddNode(Issue issue, List<FreeMindNode> mindMapNodes)
@@ -75,7 +75,7 @@ namespace GitlabMindMapGenerator
             }
 
             // Issue icons
-            foreach(string icon in issue.MindMapNode.Style.Icons)
+            foreach(string icon in issue.CustomProperties.Style.Icons)
             {
                 icons.Add(new FreeMindNodeIcon(icon));
             }
@@ -101,8 +101,8 @@ namespace GitlabMindMapGenerator
             FreeMindNode node = new FreeMindNode(
                 text: $"{issue.Title} - #{issue.IID} ({issue.TaskCompletion} - {issue.TaskCompletionPercentage}%)",
                 link: issue.WebURL,
-                folded: issue.MindMapNode.Folded,
-                cloud: issue.MindMapNode.Cloud,
+                folded: issue.CustomProperties.Folded,
+                cloud: issue.CustomProperties.Cloud,
                 position: FreeMindPosition.Right,
                 style: nodeStyle,
                 icons: icons,
@@ -170,12 +170,12 @@ namespace GitlabMindMapGenerator
 
         private void SetNodeStyle(Issue issue, FreeMindNodeStyle style)
         {
-            style.FontName = issue.MindMapNode.Style.FontName ?? style.FontName;
-            style.FontSize = issue.MindMapNode.Style.FontSize ?? style.FontSize;
-            style.FontColor = issue.MindMapNode.Style.FontColor ?? style.FontColor;
-            style.BackgroundColor = issue.MindMapNode.Style.BackgroundColor ?? style.BackgroundColor;
-            style.BorderColor = issue.MindMapNode.Style.BorderColor ?? style.BorderColor;
-            style.Bold = issue.MindMapNode.Style.Bold || false;
+            style.FontName = issue.CustomProperties.Style.FontName ?? style.FontName;
+            style.FontSize = issue.CustomProperties.Style.FontSize ?? style.FontSize;
+            style.FontColor = issue.CustomProperties.Style.FontColor ?? style.FontColor;
+            style.BackgroundColor = issue.CustomProperties.Style.BackgroundColor ?? style.BackgroundColor;
+            style.BorderColor = issue.CustomProperties.Style.BorderColor ?? style.BorderColor;
+            style.Bold = issue.CustomProperties.Style.Bold || false;
         }
 
         private FreeMindNodeStyle GetNodeStyle()

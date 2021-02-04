@@ -191,7 +191,7 @@ namespace GitlabMindMapGenerator
             }
         }
 
-        public IssueMindMapNode MindMapNode { get; set; }
+        public IssueCustomPropertys CustomProperties { get; set; }
         public List<Issue> Issues { get; set; }
         public List<MergeRequest> MergeRequests { get; set; }
 
@@ -273,8 +273,10 @@ namespace GitlabMindMapGenerator
             Match matchBorderColor = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Border\-Color\*\*\:\s).*?(?=\n|$)");
             Match matchFolded = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Folded\*\*\:\s).*?(?=\n|$)");
             Match matchCloud = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Node\-Cloud\*\*\:\s).*?(?=\n|$)");
+            Match matchStartDate = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Gantt\-Start\*\*\:\s).*?(?=\n|$)");
+            Match matchDueDate = Regex.Match(this.Description, @"(?<=(\*|\-|\+)\s\*\*Gantt\-Due\*\*\:\s).*?(?=\n|$)");
 
-            this.MindMapNode = new IssueMindMapNode(
+            this.CustomProperties = new IssueCustomPropertys(
                 style: new IssueMindMapNodeStyle(
                     matchIcons.Value.Split(",", StringSplitOptions.RemoveEmptyEntries) ?? null,
                     matchFontName.Value ?? null,
@@ -285,7 +287,9 @@ namespace GitlabMindMapGenerator
                     (matchFontBold.Value == "Yes")
                 ),
                 folded: (matchFolded.Value == "Yes"),
-                cloud: (matchCloud.Value == "Yes")
+                cloud: (matchCloud.Value == "Yes"),
+                startDate: (matchStartDate.Value != "" ? Convert.ToDateTime(matchStartDate.Value) : null),
+                dueDate: (matchDueDate.Value != "" ? Convert.ToDateTime(matchDueDate.Value) : null)
             );
         }
     }
@@ -379,17 +383,27 @@ namespace GitlabMindMapGenerator
         public string Full { get; set; }
     }
 
-    public class IssueMindMapNode
+    public class IssueCustomPropertys
     {
         public IssueMindMapNodeStyle Style { get; set; }
         public bool Folded { get; set; }
         public bool Cloud { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
-        public IssueMindMapNode(IssueMindMapNodeStyle style, bool folded, bool cloud)
+        public IssueCustomPropertys(
+            IssueMindMapNodeStyle style,
+            bool folded = false,
+            bool cloud = false,
+            DateTime? startDate = null,
+            DateTime? dueDate = null
+        )
         {
             Style = style;
             Folded = folded;
             Cloud = cloud;
+            StartDate = startDate;
+            DueDate = dueDate;
         }
     }
 

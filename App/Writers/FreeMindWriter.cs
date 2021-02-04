@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace GitlabMindMapGenerator
 {
-    public class FreeMindWriter
+    public class FreeMindWriter: IWriter
     {
         private string Version = "0.8.1";
         public string FilePath;
@@ -23,7 +23,7 @@ namespace GitlabMindMapGenerator
                 Nodes = new List<FreeMindNode>();
         }
 
-        public void BuldMindMap()
+        public void Write()
         {
             Random random = new Random();
 
@@ -54,7 +54,7 @@ namespace GitlabMindMapGenerator
             // build nodes
             foreach(FreeMindNode node in this.Nodes)
             {
-                BuildNode(node);
+                WriteNode(node);
             }
 
             XMLWriter.WriteEndElement(); // Close </node> element
@@ -64,7 +64,7 @@ namespace GitlabMindMapGenerator
             fileStream.Flush();
         }
 
-        private void BuildNode(FreeMindNode node)
+        private void WriteNode(FreeMindNode node)
         {
             // Write <node> element
             XMLWriter.WriteStartElement(null, "node", null);
@@ -136,15 +136,10 @@ namespace GitlabMindMapGenerator
             // Write child nodes
             foreach(FreeMindNode chilNode in node.Nodes)
             {
-                BuildNode(chilNode);
+                WriteNode(chilNode);
             }
 
             XMLWriter.WriteEndElement();
-        }
-
-        private void WriteNode(FreeMindNode node)
-        {
-
         }
     }
 }

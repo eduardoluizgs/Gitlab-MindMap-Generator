@@ -72,7 +72,9 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "CREATED", null, node.Created.Ticks.ToString());
             XMLWriter.WriteAttributeString(null, "MODIFIED", null, node.Modified.Ticks.ToString());
             XMLWriter.WriteAttributeString(null, "POSITION", null, node.Position.Value);
-            XMLWriter.WriteAttributeString(null, "LINK", null, node.Link);
+            if (node.Link != "") {
+                XMLWriter.WriteAttributeString(null, "LINK", null, node.Link);
+            }
             XMLWriter.WriteAttributeString(null, "TEXT", null, node.Text);
             XMLWriter.WriteAttributeString(null, "STYLE", null, "bubble");
             XMLWriter.WriteAttributeString(null, "COLOR", null, node.Style.FontColor);

@@ -14,6 +14,7 @@ namespace GitlabMindMapGenerator
         static List<Issue> Issues = new List<Issue>();
         static GitlabSettings GitlabSettings = new GitlabSettings();
         static MindMapSetting MindMapSettings = new MindMapSetting();
+        static GanntChartSetting GanntChartSetting = new GanntChartSetting();
         static string InvalidSettingMessage = "The configuration `{0}` is invalid. Please, review AppSettings.json file and try again.";
 
         static async Task Main(string[] args)
@@ -61,6 +62,7 @@ namespace GitlabMindMapGenerator
 
             Configuration.Bind("Gitlab", GitlabSettings);
             Configuration.Bind("MindMap", MindMapSettings);
+            Configuration.Bind("GanttChart", GanntChartSetting);
 
             // Validate general settings
             string[] settings = new string[] {
@@ -124,7 +126,9 @@ namespace GitlabMindMapGenerator
         {
             GanttProjectBuilder builder = new GanttProjectBuilder(
                 issues: Issues,
-                filePath: Path.Join(Directory.GetCurrentDirectory(), "Output", "GantProject.gan")
+                filePath: Path.Join(Directory.GetCurrentDirectory(), "Output", "GantProject.gan"),
+                gitlabSettings: GitlabSettings,
+                ganntChartSetting: GanntChartSetting
             );
             builder.Build();
         }

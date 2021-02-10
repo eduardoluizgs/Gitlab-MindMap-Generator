@@ -50,4 +50,9 @@ namespace GitlabMindMapGenerator
         public string BackgroundColor { get; set; }
         public string BorderColor { get; set; }
     }
+
+    public class GanntChartSetting
+    {
+        public List<string> IncludeIssuesLabels { get; set; }
+    }
 }

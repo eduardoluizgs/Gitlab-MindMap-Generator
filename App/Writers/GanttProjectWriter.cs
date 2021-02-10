@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace GitlabMindMapGenerator
@@ -36,12 +37,41 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "webLink", null, "http://");
             XMLWriter.WriteAttributeString(null, "view-date", null, "2021-02-11");
             XMLWriter.WriteAttributeString(null, "view-index", null, "0");
-            XMLWriter.WriteAttributeString(null, "gantt-divider-location", null, "395");
+            XMLWriter.WriteAttributeString(null, "gantt-divider-location", null, "800");
             XMLWriter.WriteAttributeString(null, "resource-divider-location", null, "300");
             XMLWriter.WriteAttributeString(null, "version", null, this.Version);
             XMLWriter.WriteAttributeString(null, "locale", null, "pt_BR");
 
-            // TODO : Add others tags, incluindo editable
+            // Write <view> element
+            XMLWriter.WriteStartElement(null, "view", null);
+            XMLWriter.WriteAttributeString(null, "zooming-state", null, "default:8");
+            XMLWriter.WriteAttributeString(null, "id", null, "gantt-chart");
+
+            var fields = new[] {
+                new { id = "tpd3", name = "Nome", width = "501", order = "0" },
+                new { id = "tpd4", name = "Data inicial", width = "109", order = "1" },
+                new { id = "tpd5", name = "Data final", width = "98", order = "2" },
+                new { id = "tpd7", name = "Concluído", width = "83", order = "3" }
+            }.ToList();
+
+            foreach(var field in fields)
+            {
+                // Write <field> element
+                XMLWriter.WriteStartElement(null, "field", null);
+                XMLWriter.WriteAttributeString(null, "id", null, field.id);
+                XMLWriter.WriteAttributeString(null, "name", null, field.name);
+                XMLWriter.WriteAttributeString(null, "width", null, field.width);
+                XMLWriter.WriteAttributeString(null, "order", null, field.order);
+                XMLWriter.WriteEndElement();
+            }
+
+            // Write <option> element
+            XMLWriter.WriteStartElement(null, "option", null);
+            XMLWriter.WriteAttributeString(null, "id", null, "color.recent");
+            XMLWriter.WriteCData("#ff3300");
+            XMLWriter.WriteEndElement();
+
+            XMLWriter.WriteEndElement(); // Close </view> element
 
             // Write <tasks> element
             XMLWriter.WriteStartElement(null, "tasks", null);
@@ -74,6 +104,7 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "thirdDate", null, (task.ThirdDate != null ? ((DateTime)task.ThirdDate).ToString("yyyy-MM-dd") : ""));
             XMLWriter.WriteAttributeString(null, "duration", null, task.Duration.ToString());
             XMLWriter.WriteAttributeString(null, "complete", null, task.Complete.ToString());
+            XMLWriter.WriteAttributeString(null, "webLink", null, task.WebLink);
             XMLWriter.WriteAttributeString(null, "thirdDate-constraint", null, "0");
 
             foreach(GanttProjectTask childTask in task.Tasks)

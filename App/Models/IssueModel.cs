@@ -127,6 +127,13 @@ namespace GitlabMindMapGenerator
         [JsonProperty("task_completion_status")]
         private IssueTaskCompletionStatus TaskCompletionStatus { get; set; }
 
+        public bool IsClosed
+        {
+            get {
+                return (this.State == 'Closed');
+            }
+        }
+
         public int TaskCount {
             get {
                 int count = 0;
@@ -253,6 +260,9 @@ namespace GitlabMindMapGenerator
 
         public IssueStage GetStageReview()
         {
+            if (this.MergeRequests.Count == 0)
+                return null;
+
             MergeRequest openMR = this.MergeRequests.Find(x => x.State == "opened");
 
             return new IssueStage(
@@ -361,6 +371,17 @@ namespace GitlabMindMapGenerator
             get {
                 var time = TimeSpan.FromSeconds(this.TimeExtra).ToString(@"hh\:mm");
                 return $"{time}";
+            }
+        }
+
+        public Decimal TimeCompletionPercentage
+        {
+            get {
+                Decimal percentage = 0;
+                if (this.TimeSpent > 0 && this.TimeEstimate > 0) {
+                    percentage = Math.Round(((Convert.ToDecimal(this.TimeSpent) / Convert.ToDecimal(this.TimeEstimate)) * 100), 0);
+                }
+                return percentage;
             }
         }
     }

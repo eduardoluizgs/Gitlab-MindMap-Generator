@@ -55,7 +55,7 @@ namespace GitlabMindMapGenerator
             }
 
             // Issue status logic
-            if (issue.TaskCompletionPercentage == 100) {
+            if (issue.IsClosed && issue.TaskCompletionPercentage == 100) {
                 icons.Add(new FreeMindNodeIcon("button_ok"));
                 nodeStyle = GetNodeStyleDone();
             } else if (issue.TaskCompletionPercentage > 0 || issue.TaskCompletionAvarage > 0) {
@@ -99,7 +99,7 @@ namespace GitlabMindMapGenerator
 
             // create parent node
             FreeMindNode node = new FreeMindNode(
-                text: $"{issue.Title} - #{issue.IID} ({issue.TaskCompletion} - {issue.TaskCompletionPercentage}%)",
+                text: $"{issue.Title} - #{issue.IID} [{issue.TaskCompletion} - {issue.TaskCompletionPercentage}%]",
                 link: issue.WebURL,
                 folded: issue.CustomProperties.Folded,
                 cloud: issue.CustomProperties.Cloud,
@@ -111,7 +111,7 @@ namespace GitlabMindMapGenerator
             mindMapNodes.Add(node);
 
             // create stage nodes
-            if (label.Label == GitlabSettings.LabelTask) {
+            if (label != null && label.Label == GitlabSettings.LabelTask) {
                 SetIssueStatesNodes(issue, node);
             }
 
@@ -128,25 +128,35 @@ namespace GitlabMindMapGenerator
 
             foreach(var settingStage in GitlabSettings.IssueStages)
             {
+                List<FreeMindNode> nodes = new List<FreeMindNode>();
                 List<FreeMindNodeIcon> stageIcons = new List<FreeMindNodeIcon>();
 
                 if (settingStage.Pattern == "[Reviewed]") {
+
                     stage = issue.GetStageReview();
+
+                    // all task issue type, must be a review node
+                    // if no merge requests associated, force this
                     if (stage != null) {
-
-                        if (stage.Done) {
-                            stageIcons.Add(new FreeMindNodeIcon("button_ok"));
-                        } else {
-                            stageIcons.Add(new FreeMindNodeIcon("help"));
-                        }
-
-                        node.Nodes.Add(new FreeMindNode(
-                            text: $"{settingStage.Title}",
-                            folded: true,
-                            style: GetNodeStyle(),
-                            icons: stageIcons
-                        ));
+                        stage = new IssueStage(
+                            "Reviewed",
+                            issue.IsClosed
+                        );
                     }
+
+                    if (stage.Done) {
+                        stageIcons.Add(new FreeMindNodeIcon("button_ok"));
+                    } else {
+                        stageIcons.Add(new FreeMindNodeIcon("help"));
+                    }
+
+                    nodes.Add(new FreeMindNode(
+                        text: $"{settingStage.Title}",
+                        folded: true,
+                        style: GetNodeStyle(),
+                        icons: stageIcons
+                    ));
+
                 } else {
                     stage = issue.GetStageInDescription(settingStage.Pattern);
                     if (stage != null) {
@@ -157,13 +167,39 @@ namespace GitlabMindMapGenerator
                             stageIcons.Add(new FreeMindNodeIcon("help"));
                         }
 
-                        node.Nodes.Add(new FreeMindNode(
+                        nodes.Add(new FreeMindNode(
                             text: $"{settingStage.Title}",
                             folded: false,
                             style: GetNodeStyle(),
                             icons: stageIcons
                         ));
                     }
+                }
+
+                if (nodes.Count > 0)
+                {
+                    FreeMindNode firstNode = nodes[0];
+                    stageIcons.Clear();
+
+                    // tasks node
+                    stageIcons.Add(new FreeMindNodeIcon("edit"));
+                    firstNode.Nodes.Add(new FreeMindNode(
+                        text: $"Tasks: {issue.TaskCompletion} - {issue.TaskCompletionPercentage}%",
+                        folded: false,
+                        style: GetNodeStyle(),
+                        icons: stageIcons
+                    ));
+
+                    // time node
+                    stageIcons.Add(new FreeMindNodeIcon("clock"));
+                    firstNode.Nodes.Add(new FreeMindNode(
+                        text: $"Time: {issue.TimeStats.TimeSpentHuman}/{issue.TimeStats.TimeEstimateHuman} - {Convert.ToInt32(issue.TimeStats.TimeCompletionPercentage)}%",
+                        folded: false,
+                        style: GetNodeStyle(),
+                        icons: stageIcons
+                    ));
+
+                    node.Nodes.AddRange(nodes);
                 }
             }
         }

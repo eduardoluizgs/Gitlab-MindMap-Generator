@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
 
 namespace GitlabMindMapGenerator
@@ -8,11 +9,12 @@ namespace GitlabMindMapGenerator
     public class FreeMindWriter: IWriter
     {
         private string Version = "0.8.1";
-        public string FilePath;
+        public string FilePath { get; set; }
+        public bool WriteAttributesAsNote { get; set; }
         XmlWriter XMLWriter;
-        public List<FreeMindNode> Nodes = new List<FreeMindNode>();
+        public List<FreeMindNode> Nodes { get; set; }
 
-        public FreeMindWriter(string filePath, List<FreeMindNode> nodes = null)
+        public FreeMindWriter(string filePath, List<FreeMindNode> nodes = null, bool writeAttributesAsNote = false)
         {
             if (filePath == null)
                 throw new Exception("Invalid file path!");
@@ -21,6 +23,7 @@ namespace GitlabMindMapGenerator
             Nodes = nodes;
             if (Nodes == null)
                 Nodes = new List<FreeMindNode>();
+            WriteAttributesAsNote = writeAttributesAsNote;
         }
 
         public void Write()
@@ -66,6 +69,9 @@ namespace GitlabMindMapGenerator
 
         private void WriteNode(FreeMindNode node)
         {
+            StringBuilder richTextContent = new StringBuilder();
+            string cellStyle = "width:120px; border-width: 1px; border-color: #c0c0c0; border-style: solid;";
+
             // Write <node> element
             XMLWriter.WriteStartElement(null, "node", null);
             XMLWriter.WriteAttributeString(null, "ID", null, $"Freemind_Link_{node.ID}");
@@ -80,15 +86,6 @@ namespace GitlabMindMapGenerator
             XMLWriter.WriteAttributeString(null, "COLOR", null, node.Style.FontColor);
             XMLWriter.WriteAttributeString(null, "BACKGROUND_COLOR", null, node.Style.BackgroundColor);
             XMLWriter.WriteAttributeString(null, "FOLDED", null, (node.Folded ? "true" : "false"));
-
-            // Write <richcontent> element
-            // <richcontent TYPE="NOTE">
-            //   <html>
-            //     <body>
-            //       Text
-            //     </body>
-            //   </html>
-            // </richcontent>
 
             // Write <icon> element
             foreach(FreeMindNodeIcon icon in node.Icons)
@@ -113,13 +110,72 @@ namespace GitlabMindMapGenerator
                 XMLWriter.WriteEndElement();
             }
 
-            // Write <attribute> element
-            foreach(FreemindAttribute attribute in node.Attributes)
-            {
-                XMLWriter.WriteStartElement(null, "attribute", null);
-                XMLWriter.WriteAttributeString(null, "NAME", null, $"{attribute.Key}:");
-                XMLWriter.WriteAttributeString(null, "VALUE", null, attribute.Value ?? "");
-                XMLWriter.WriteEndElement();
+            if (node.Attributes.Count > 0) {
+                if (WriteAttributesAsNote) {
+
+                    // Write <richcontent> element
+                    XMLWriter.WriteStartElement(null, "richcontent", null);
+                    XMLWriter.WriteAttributeString(null, "TYPE", null, "NOTE");
+
+                    // subdocument
+                    XMLWriter.WriteStartElement(null, "html", null);
+                    XMLWriter.WriteStartElement(null, "body", null);
+
+                    // table attributes
+                    XMLWriter.WriteStartElement(null, "table", null);
+                    XMLWriter.WriteAttributeString(null, "style", null, "border-collapse: collapse;");
+
+                    // title
+                    XMLWriter.WriteStartElement(null, "tr", null);
+                    XMLWriter.WriteStartElement(null, "td", null);
+                    XMLWriter.WriteAttributeString(null, "style", null, cellStyle);
+                    XMLWriter.WriteStartElement(null, "b", null);
+                    XMLWriter.WriteValue("Issue-Attribute");
+                    XMLWriter.WriteEndElement(); // close </b>
+                    XMLWriter.WriteEndElement(); // close </td>
+                    XMLWriter.WriteStartElement(null, "td", null);
+                    XMLWriter.WriteAttributeString(null, "style", null, cellStyle);
+                    XMLWriter.WriteStartElement(null, "b", null);
+                    XMLWriter.WriteValue("Value");
+                    XMLWriter.WriteEndElement(); // close </b>
+                    XMLWriter.WriteEndElement(); // close </td>
+                    XMLWriter.WriteEndElement(); // close </tr>
+
+                    // attributes
+                    foreach(FreemindAttribute attribute in node.Attributes)
+                    {
+                        XMLWriter.WriteStartElement(null, "tr", null);
+                        XMLWriter.WriteStartElement(null, "td", null);
+                        XMLWriter.WriteAttributeString(null, "style", null, cellStyle);
+                        XMLWriter.WriteStartElement(null, "b", null);
+                        XMLWriter.WriteValue($"{attribute.Key}:");
+                        XMLWriter.WriteEndElement(); // close </b>
+                        XMLWriter.WriteEndElement(); // close </td>
+                        XMLWriter.WriteStartElement(null, "td", null);
+                        XMLWriter.WriteAttributeString(null, "style", null, cellStyle);
+                        XMLWriter.WriteValue(attribute.Value);
+                        XMLWriter.WriteEndElement(); // close </td>
+                        XMLWriter.WriteEndElement(); // close </tr>
+                    }
+
+                    XMLWriter.WriteEndElement(); // close </table>
+                    XMLWriter.WriteEndElement(); // close </body>
+                    XMLWriter.WriteEndElement(); // close </html>
+
+                    XMLWriter.WriteEndElement(); // close </richcontent>
+
+                } else {
+
+                    // Write <attribute> element
+                    foreach(FreemindAttribute attribute in node.Attributes)
+                    {
+                        XMLWriter.WriteStartElement(null, "attribute", null);
+                        XMLWriter.WriteAttributeString(null, "NAME", null, $"{attribute.Key}:");
+                        XMLWriter.WriteAttributeString(null, "VALUE", null, attribute.Value ?? "");
+                        XMLWriter.WriteEndElement();
+                    }
+
+                }
             }
 
             // Write <font> element

@@ -29,7 +29,7 @@ namespace GitlabMindMapGenerator
 
         public void Build()
         {
-            FreeMindWriter mindMap = new FreeMindWriter(FilePath);
+            FreeMindWriter mindMap = new FreeMindWriter(FilePath, writeAttributesAsNote: true);
 
             foreach(Issue issue in this.Issues)
             {
@@ -55,7 +55,7 @@ namespace GitlabMindMapGenerator
             }
 
             // Issue status logic
-            if (issue.IsClosed && issue.TaskCompletionPercentage == 100) {
+            if (issue.TaskCompletionPercentage == 100) {
                 icons.Add(new FreeMindNodeIcon("button_ok"));
                 nodeStyle = GetNodeStyleDone();
             } else if (issue.TaskCompletionPercentage > 0 || issue.TaskCompletionAvarage > 0) {
@@ -125,85 +125,79 @@ namespace GitlabMindMapGenerator
         private void SetIssueStatesNodes(Issue issue, FreeMindNode node)
         {
             IssueStage stage;
+            List<FreeMindNode> nodes = new List<FreeMindNode>();
 
             foreach(var settingStage in GitlabSettings.IssueStages)
             {
-                List<FreeMindNode> nodes = new List<FreeMindNode>();
-                List<FreeMindNodeIcon> stageIcons = new List<FreeMindNodeIcon>();
-
-                if (settingStage.Pattern == "[Reviewed]") {
-
-                    stage = issue.GetStageReview();
+                if (settingStage.Pattern == "[IsClosed]") {
+                    stage = new IssueStage(
+                        "Reviewed",
+                        issue.IsClosed
+                    );
+                } else if (settingStage.Pattern == "[Reviewed]") {
 
                     // all task issue type, must be a review node
                     // if no merge requests associated, force this
-                    if (stage != null) {
+                    stage = issue.GetStageReview();
+                    if (stage == null) {
                         stage = new IssueStage(
                             "Reviewed",
                             issue.IsClosed
                         );
                     }
 
-                    if (stage.Done) {
-                        stageIcons.Add(new FreeMindNodeIcon("button_ok"));
-                    } else {
-                        stageIcons.Add(new FreeMindNodeIcon("help"));
-                    }
-
-                    nodes.Add(new FreeMindNode(
-                        text: $"{settingStage.Title}",
-                        folded: true,
-                        style: GetNodeStyle(),
-                        icons: stageIcons
-                    ));
-
                 } else {
                     stage = issue.GetStageInDescription(settingStage.Pattern);
-                    if (stage != null) {
-
-                        if (stage.Done) {
-                            stageIcons.Add(new FreeMindNodeIcon("button_ok"));
-                        } else {
-                            stageIcons.Add(new FreeMindNodeIcon("help"));
-                        }
-
-                        nodes.Add(new FreeMindNode(
-                            text: $"{settingStage.Title}",
-                            folded: false,
-                            style: GetNodeStyle(),
-                            icons: stageIcons
-                        ));
-                    }
                 }
 
-                if (nodes.Count > 0)
-                {
-                    FreeMindNode firstNode = nodes[0];
-                    stageIcons.Clear();
-
-                    // tasks node
-                    stageIcons.Add(new FreeMindNodeIcon("edit"));
-                    firstNode.Nodes.Add(new FreeMindNode(
-                        text: $"Tasks: {issue.TaskCompletion} - {issue.TaskCompletionPercentage}%",
+                if (stage != null) {
+                    nodes.Add(new FreeMindNode(
+                        text: settingStage.Title,
                         folded: false,
-                        style: GetNodeStyle(),
-                        icons: stageIcons
+                        style: (stage.Done ? GetNodeStyleDone() : GetNodeStyle()),
+                        icons: GetStateIcons(stage.Done)
                     ));
+                }
+            }
 
-                    // time node
-                    stageIcons.Add(new FreeMindNodeIcon("clock"));
+            if (nodes.Count > 0)
+            {
+                FreeMindNode firstNode = nodes[0];
+
+                // tasks node
+                firstNode.Nodes.Add(new FreeMindNode(
+                    text: $"Tasks: {issue.TaskCompletion} - {issue.TaskCompletionPercentage}%",
+                    folded: false,
+                    style: GetNodeStyle(),
+                    icons: new List<FreeMindNodeIcon>() { new FreeMindNodeIcon("edit") }
+                ));
+
+                // time node
+                if (issue.TimeStats.TimeSpent > 0 || issue.TimeStats.TimeEstimate > 0) {
                     firstNode.Nodes.Add(new FreeMindNode(
                         text: $"Time: {issue.TimeStats.TimeSpentHuman}/{issue.TimeStats.TimeEstimateHuman} - {Convert.ToInt32(issue.TimeStats.TimeCompletionPercentage)}%",
                         folded: false,
                         style: GetNodeStyle(),
-                        icons: stageIcons
+                        icons: new List<FreeMindNodeIcon>() { new FreeMindNodeIcon("clock") }
                     ));
-
-                    node.Nodes.AddRange(nodes);
                 }
+
+                node.Nodes.AddRange(nodes);
             }
         }
 
+        private List<FreeMindNodeIcon> GetStateIcons(bool isDone)
+        {
+            List<FreeMindNodeIcon> icons = new List<FreeMindNodeIcon>();
+
+            if (isDone) {
+                icons.Add(new FreeMindNodeIcon("button_ok"));
+            } else {
+                icons.Add(new FreeMindNodeIcon("help"));
+            }
+
+            return icons;
+        }
         private void SetNodeStyle(Issue issue, FreeMindNodeStyle style)
         {
             style.FontName = issue.CustomProperties.Style.FontName ?? style.FontName;

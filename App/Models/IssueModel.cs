@@ -130,7 +130,15 @@ namespace GitlabMindMapGenerator
         public bool IsClosed
         {
             get {
-                return (this.State == 'Closed');
+                return (this.State == "Closed");
+            }
+        }
+
+        public bool IsReviewed
+        {
+            get {
+                IssueStage stage = GetStageReview();
+                return stage?.Done ?? false;
             }
         }
 
